@@ -1,0 +1,644 @@
+%!PS-Adobe-2.0
+%%DocumentFonts: Courier Times-Bold
+%%Title: backend/Compiler.java (mpage)
+%%Creator: mpage 2.5.6 Januari 2008
+%%CreationDate: Tue Mar  1 13:04:12 2016
+%%Orientation: Landscape
+%%DocumentMedia: Letter 612 792
+%%BoundingBox: 18 18 594 774
+%%Pages: (atend)
+%%EndComments
+
+%%BeginProlog
+
+/mp_stm usertime def
+/mp_pgc statusdict begin pagecount end def
+statusdict begin /jobname (backend/Compiler.java) def end
+/reencsmalldict 12 dict def /ReEncodeSmall { reencsmalldict begin
+/newcodesandnames exch def /newfontname exch def /basefontname exch def
+/basefontdict basefontname findfont def /newfont basefontdict maxlength dict def
+basefontdict { exch dup /FID ne { dup /Encoding eq { exch dup length array copy newfont 3 1 roll put } { exch newfont 3 1 roll put }
+ifelse }
+  { pop pop }
+  ifelse } forall
+newfont /FontName newfontname put
+newcodesandnames aload pop newcodesandnames length 2 idiv
+{ newfont /Encoding get 3 1 roll put } repeat
+newfontname newfont definefont pop end } def
+/charvec [
+026 /Scaron
+027 /Ydieresis
+028 /Zcaron
+029 /scaron
+030 /trademark
+031 /zcaron
+032 /space
+033 /exclam
+034 /quotedbl
+035 /numbersign
+036 /dollar
+037 /percent
+038 /ampersand
+039 /quoteright
+040 /parenleft
+041 /parenright
+042 /asterisk
+043 /plus
+044 /comma
+045 /minus
+046 /period
+047 /slash
+048 /zero
+049 /one
+050 /two
+051 /three
+052 /four
+053 /five
+054 /six
+055 /seven
+056 /eight
+057 /nine
+058 /colon
+059 /semicolon
+060 /less
+061 /equal
+062 /greater
+063 /question
+064 /at
+065 /A
+066 /B
+067 /C
+068 /D
+069 /E
+070 /F
+071 /G
+072 /H
+073 /I
+074 /J
+075 /K
+076 /L
+077 /M
+078 /N
+079 /O
+080 /P
+081 /Q
+082 /R
+083 /S
+084 /T
+085 /U
+086 /V
+087 /W
+088 /X
+089 /Y
+090 /Z
+091 /bracketleft
+092 /backslash
+093 /bracketright
+094 /asciicircum
+095 /underscore
+096 /quoteleft
+097 /a
+098 /b
+099 /c
+100 /d
+101 /e
+102 /f
+103 /g
+104 /h
+105 /i
+106 /j
+107 /k
+108 /l
+109 /m
+110 /n
+111 /o
+112 /p
+113 /q
+114 /r
+115 /s
+116 /t
+117 /u
+118 /v
+119 /w
+120 /x
+121 /y
+122 /z
+123 /braceleft
+124 /bar
+125 /braceright
+126 /asciitilde
+127 /.notdef
+128 /fraction
+129 /florin
+130 /quotesingle
+131 /quotedblleft
+132 /guilsinglleft
+133 /guilsinglright
+134 /fi
+135 /fl
+136 /endash
+137 /dagger
+138 /daggerdbl
+139 /bullet
+140 /quotesinglbase
+141 /quotedblbase
+142 /quotedblright
+143 /ellipsis
+144 /dotlessi
+145 /grave
+146 /acute
+147 /circumflex
+148 /tilde
+149 /oe
+150 /breve
+151 /dotaccent
+152 /perthousand
+153 /emdash
+154 /ring
+155 /Lslash
+156 /OE
+157 /hungarumlaut
+158 /ogonek
+159 /caron
+160 /lslash
+161 /exclamdown
+162 /cent
+163 /sterling
+164 /currency
+165 /yen
+166 /brokenbar
+167 /section
+168 /dieresis
+169 /copyright
+170 /ordfeminine
+171 /guillemotleft
+172 /logicalnot
+173 /hyphen
+174 /registered
+175 /macron
+176 /degree
+177 /plusminus
+178 /twosuperior
+179 /threesuperior
+180 /acute
+181 /mu
+182 /paragraph
+183 /periodcentered
+184 /cedilla
+185 /onesuperior
+186 /ordmasculine
+187 /guillemotright
+188 /onequarter
+189 /onehalf
+190 /threequarters
+191 /questiondown
+192 /Agrave
+193 /Aacute
+194 /Acircumflex
+195 /Atilde
+196 /Adieresis
+197 /Aring
+198 /AE
+199 /Ccedilla
+200 /Egrave
+201 /Eacute
+202 /Ecircumflex
+203 /Edieresis
+204 /Igrave
+205 /Iacute
+206 /Icircumflex
+207 /Idieresis
+208 /Eth
+209 /Ntilde
+210 /Ograve
+211 /Oacute
+212 /Ocircumflex
+213 /Otilde
+214 /Odieresis
+215 /multiply
+216 /Oslash
+217 /Ugrave
+218 /Uacute
+219 /Ucircumflex
+220 /Udieresis
+221 /Yacute
+222 /Thorn
+223 /germandbls
+224 /agrave
+225 /aacute
+226 /acircumflex
+227 /atilde
+228 /adieresis
+229 /aring
+230 /ae
+231 /ccedilla
+232 /egrave
+233 /eacute
+234 /ecircumflex
+235 /edieresis
+236 /igrave
+237 /iacute
+238 /icircumflex
+239 /idieresis
+240 /eth
+241 /ntilde
+242 /ograve
+243 /oacute
+244 /ocircumflex
+245 /otilde
+246 /odieresis
+247 /divide
+248 /oslash
+249 /ugrave
+250 /uacute
+251 /ucircumflex
+252 /udieresis
+253 /yacute
+254 /thorn
+255 /ydieresis
+] def
+/Courier /OurCharSet charvec ReEncodeSmall
+/textfont /OurCharSet findfont 11 scalefont def
+/textfontbold /OurCharSet-Bold findfont 11 scalefont def
+/fnamefont /Times-Bold findfont 14 scalefont def
+/headerfont /Times-Bold findfont 12 scalefont def
+textfont setfont
+(a) stringwidth pop /mp_a_x exch def
+%%EndProlog
+%%Page: 1 1
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:17:35 CET) show
+80 mp_a_x mul dup (Page 1) stringwidth pop sub 3 sub 796 moveto (Page 1) show
+fnamefont setfont
+(backend/Compiler.java) stringwidth pop sub 2 div 796 moveto
+(backend/Compiler.java) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 780 moveto (package microjs.jcompiler.backend;) show
+0 756 moveto (import microjs.jcompiler.backend.GlobalEnv.VarAlreadyDefined;) show
+0 744 moveto (import microjs.jcompiler.backend.bytecode.Bool;) show
+0 732 moveto (import microjs.jcompiler.backend.bytecode.Bytecode;) show
+0 720 moveto (import microjs.jcompiler.backend.bytecode.Fun;) show
+0 708 moveto (import microjs.jcompiler.backend.bytecode.Int;) show
+0 696 moveto (import microjs.jcompiler.backend.bytecode.Prim;) show
+0 684 moveto (import microjs.jcompiler.backend.bytecode.Unit;) show
+0 672 moveto (import microjs.jcompiler.middleend.kast.KASTNode;) show
+0 660 moveto (import microjs.jcompiler.middleend.kast.KASTVisitor;) show
+0 648 moveto (import microjs.jcompiler.middleend.kast.KAssign;) show
+0 636 moveto (import microjs.jcompiler.middleend.kast.KCall;) show
+0 624 moveto (import microjs.jcompiler.middleend.kast.KClosure;) show
+0 612 moveto (import microjs.jcompiler.middleend.kast.KEVar;) show
+0 600 moveto (import microjs.jcompiler.middleend.kast.KFalse;) show
+0 588 moveto (import microjs.jcompiler.middleend.kast.KIf;) show
+0 576 moveto (import microjs.jcompiler.middleend.kast.KInt;) show
+0 564 moveto (import microjs.jcompiler.middleend.kast.KProg;) show
+0 552 moveto (import microjs.jcompiler.middleend.kast.KReturn;) show
+0 540 moveto (import microjs.jcompiler.middleend.kast.KSeq;) show
+0 528 moveto (import microjs.jcompiler.middleend.kast.KStatement;) show
+0 516 moveto (import microjs.jcompiler.middleend.kast.KTrue;) show
+0 504 moveto (import microjs.jcompiler.middleend.kast.KVar;) show
+0 492 moveto (import microjs.jcompiler.middleend.kast.KVoidExpr;) show
+0 468 moveto (import microjs.jcompiler.middleend.kast.KEchange;) show
+0 456 moveto (import microjs.jcompiler.middleend.kast.KWhile;) show
+0 420 moveto (public class Compiler implements KASTVisitor {) show
+8 mp_a_x mul 408 moveto (private Bytecode bytecode;) show
+8 mp_a_x mul 396 moveto (private PrimEnv primEnv;) show
+8 mp_a_x mul 384 moveto (private LexicalEnv lexEnv;) show
+8 mp_a_x mul 372 moveto (private GlobalEnv globEnv;) show
+8 mp_a_x mul 360 moveto (private int lblCount;) show
+8 mp_a_x mul 336 moveto (public Compiler\(PrimEnv primEnv\) {) show
+16 mp_a_x mul 324 moveto (this.primEnv = primEnv;) show
+16 mp_a_x mul 312 moveto (reset\(\);) show
+8 mp_a_x mul 300 moveto (}) show
+8 mp_a_x mul 276 moveto (private void reset\(\) {) show
+16 mp_a_x mul 264 moveto (bytecode = new Bytecode\(\);) show
+16 mp_a_x mul 252 moveto (lexEnv = new LexicalEnv\(\);) show
+16 mp_a_x mul 240 moveto (globEnv = new GlobalEnv\(\);) show
+16 mp_a_x mul 228 moveto (lblCount = 1;) show
+8 mp_a_x mul 216 moveto (}) show
+8 mp_a_x mul 192 moveto (public Bytecode compile\(KProg prog\) {) show
+16 mp_a_x mul 180 moveto (reset\(\);) show
+16 mp_a_x mul 168 moveto (prog.accept\(this\);) show
+16 mp_a_x mul 156 moveto (return bytecode;) show
+8 mp_a_x mul 144 moveto (}) show
+8 mp_a_x mul 120 moveto (private String nextLabel\(\) {) show
+16 mp_a_x mul 108 moveto (String lbl = "L" + lblCount;) show
+16 mp_a_x mul 96 moveto (lblCount++;) show
+16 mp_a_x mul 84 moveto (return lbl;) show
+8 mp_a_x mul 72 moveto (}) show
+8 mp_a_x mul 48 moveto (@Override) show
+8 mp_a_x mul 36 moveto (public void visit\(KProg prog\) {) show
+16 mp_a_x mul 24 moveto (prog.getBody\(\).accept\(this\);) show
+8 mp_a_x mul 12 moveto (}) show
+grestore
+gsave
+18 396 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:17:35 CET) show
+80 mp_a_x mul dup (Page 2) stringwidth pop sub 3 sub 796 moveto (Page 2) show
+fnamefont setfont
+(backend/Compiler.java) stringwidth pop sub 2 div 796 moveto
+(backend/Compiler.java) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+8 mp_a_x mul 780 moveto (@Override) show
+8 mp_a_x mul 768 moveto (public void visit\(KVoidExpr stmt\) {) show
+16 mp_a_x mul 756 moveto (stmt.getExpr\(\).accept\(this\);) show
+16 mp_a_x mul 744 moveto (bytecode.pop\(\);) show
+8 mp_a_x mul 732 moveto (}) show
+8 mp_a_x mul 708 moveto (@Override) show
+8 mp_a_x mul 696 moveto (public void visit\(KEVar expr\) {) show
+16 mp_a_x mul 684 moveto (int ref = -1;) show
+16 mp_a_x mul 672 moveto (try {) show
+24 mp_a_x mul 660 moveto (ref = lexEnv.fetch\(expr.getName\(\)\);) show
+24 mp_a_x mul 648 moveto (bytecode.fetch\(ref\);) show
+16 mp_a_x mul 636 moveto (} catch\(LexicalEnv.VarNotFound err\) {) show
+24 mp_a_x mul 624 moveto (try {) show
+32 mp_a_x mul 612 moveto (ref = globEnv.fetch\(expr.getName\(\)\);) show
+32 mp_a_x mul 600 moveto (bytecode.gfetch\(ref\);) show
+24 mp_a_x mul 588 moveto (} catch\(GlobalEnv.VarNotFound e\) {) show
+32 mp_a_x mul 576 moveto (try {) show
+40 mp_a_x mul 564 moveto (Primitive prim = primEnv.fetch\(expr.getN) show
+0 552 moveto (ame\(\)\);) show
+40 mp_a_x mul 540 moveto (bytecode.push\(new Prim\(prim.getId\(\)\)\);) show
+32 mp_a_x mul 528 moveto (} catch\(PrimEnv.PrimNotFound ee\) {) show
+40 mp_a_x mul 516 moveto (throw new CompileError\(expr, "Not in sco) show
+0 504 moveto (pe: " + expr.getName\(\)\);) show
+32 mp_a_x mul 492 moveto (}) show
+24 mp_a_x mul 480 moveto (}) show
+16 mp_a_x mul 468 moveto (}) show
+8 mp_a_x mul 456 moveto (}) show
+8 mp_a_x mul 432 moveto (@Override) show
+8 mp_a_x mul 420 moveto (public void visit\(KIf stmt\) {) show
+16 mp_a_x mul 408 moveto (String onFalseLbl = nextLabel\(\);) show
+16 mp_a_x mul 396 moveto (String contLbl = nextLabel\(\);) show
+16 mp_a_x mul 384 moveto (stmt.getCond\(\).accept\(this\);) show
+16 mp_a_x mul 372 moveto (bytecode.jfalse\(onFalseLbl\);) show
+16 mp_a_x mul 360 moveto (stmt.getThen\(\).accept\(this\);) show
+16 mp_a_x mul 348 moveto (bytecode.jump\(contLbl\);) show
+16 mp_a_x mul 336 moveto (bytecode.label\(onFalseLbl\);) show
+16 mp_a_x mul 324 moveto (stmt.getElse\(\).accept\(this\);) show
+16 mp_a_x mul 312 moveto (bytecode.label\(contLbl\);) show
+8 mp_a_x mul 300 moveto (}) show
+8 mp_a_x mul 276 moveto (@Override) show
+8 mp_a_x mul 264 moveto (public void visit\(KSeq seq\) {) show
+16 mp_a_x mul 252 moveto (for\(KStatement stmt : seq.getStatements\(\)\) {) show
+24 mp_a_x mul 240 moveto (stmt.accept\(this\);) show
+16 mp_a_x mul 228 moveto (}) show
+8 mp_a_x mul 216 moveto (}) show
+8 mp_a_x mul 192 moveto (@Override) show
+8 mp_a_x mul 180 moveto (public void visit\(KAssign stmt\) {) show
+16 mp_a_x mul 168 moveto (stmt.getExpr\(\).accept\(this\);) show
+16 mp_a_x mul 156 moveto (try {) show
+24 mp_a_x mul 144 moveto (int ref = lexEnv.fetch\(stmt.getVarName\(\)\);) show
+24 mp_a_x mul 132 moveto (bytecode.store\(ref\);) show
+16 mp_a_x mul 120 moveto (} catch\(LexicalEnv.VarNotFound e\) {) show
+24 mp_a_x mul 108 moveto (try {) show
+32 mp_a_x mul 96 moveto (int ref = globEnv.fetch\(stmt.getVarName\(\)\);) show
+32 mp_a_x mul 84 moveto (bytecode.gstore\(ref\);) show
+24 mp_a_x mul 72 moveto (} catch\(GlobalEnv.VarNotFound ee\) {) show
+32 mp_a_x mul 60 moveto (throw new CompileError\(stmt, "Unknown variable t) show
+0 48 moveto (o assign to: " + stmt.getVarName\(\)\);) show
+24 mp_a_x mul 36 moveto (}) show
+16 mp_a_x mul 24 moveto (}) show
+8 mp_a_x mul 12 moveto (}) show
+grestore
+restore
+showpage
+%%Page: 2 2
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:17:35 CET) show
+80 mp_a_x mul dup (Page 3) stringwidth pop sub 3 sub 796 moveto (Page 3) show
+fnamefont setfont
+(backend/Compiler.java) stringwidth pop sub 2 div 796 moveto
+(backend/Compiler.java) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+8 mp_a_x mul 780 moveto (@Override) show
+8 mp_a_x mul 768 moveto (public void visit\(KReturn stmt\) {) show
+16 mp_a_x mul 756 moveto (stmt.getExpr\(\).accept\(this\);) show
+16 mp_a_x mul 744 moveto (bytecode.bcReturn\(\);) show
+8 mp_a_x mul 732 moveto (}) show
+8 mp_a_x mul 708 moveto (@Override) show
+8 mp_a_x mul 696 moveto (public void visit\(KInt expr\) {) show
+16 mp_a_x mul 684 moveto (bytecode.push\(new Int\(expr.getValue\(\)\)\);) show
+8 mp_a_x mul 672 moveto (}) show
+8 mp_a_x mul 648 moveto (@Override) show
+8 mp_a_x mul 636 moveto (public void visit\(KTrue expr\) {) show
+16 mp_a_x mul 624 moveto (bytecode.push\(new Bool\(true\)\);) show
+8 mp_a_x mul 612 moveto (}) show
+8 mp_a_x mul 588 moveto (@Override) show
+8 mp_a_x mul 576 moveto (public void visit\(KFalse expr\) {) show
+16 mp_a_x mul 564 moveto (bytecode.push\(new Bool\(false\)\);) show
+8 mp_a_x mul 552 moveto (}) show
+8 mp_a_x mul 528 moveto (@Override) show
+8 mp_a_x mul 516 moveto (public void visit\(KVar stmt\) {) show
+16 mp_a_x mul 504 moveto (int ref;) show
+16 mp_a_x mul 492 moveto (try {) show
+24 mp_a_x mul 480 moveto (ref = globEnv.extend\(stmt.getName\(\)\);) show
+16 mp_a_x mul 468 moveto (} catch\(VarAlreadyDefined err\) {) show
+24 mp_a_x mul 456 moveto (throw new CompileError\(stmt, err.getMessage\(\)\);) show
+16 mp_a_x mul 444 moveto (}) show
+16 mp_a_x mul 420 moveto (bytecode.galloc\(\);) show
+16 mp_a_x mul 408 moveto (stmt.getExpr\(\).accept\(this\);) show
+16 mp_a_x mul 396 moveto (bytecode.gstore\(ref\);) show
+8 mp_a_x mul 372 moveto (}) show
+8 mp_a_x mul 348 moveto (@Override) show
+8 mp_a_x mul 336 moveto (public void visit\(KCall expr\) {) show
+16 mp_a_x mul 324 moveto (for\(int i=expr.getArguments\(\).size\(\)-1; i>=0; i--\) {) show
+24 mp_a_x mul 312 moveto (expr.getArguments\(\).get\(i\).accept\(this\);) show
+16 mp_a_x mul 300 moveto (}) show
+16 mp_a_x mul 288 moveto (expr.getFun\(\).accept\(this\);) show
+16 mp_a_x mul 276 moveto (bytecode.call\(expr.getArguments\(\).size\(\)\);) show
+8 mp_a_x mul 264 moveto (}) show
+8 mp_a_x mul 240 moveto (@Override) show
+8 mp_a_x mul 228 moveto (public void visit\(KClosure expr\) {) show
+16 mp_a_x mul 216 moveto (String funLbl = nextLabel\(\);) show
+16 mp_a_x mul 204 moveto (String contLbl = nextLabel\(\);) show
+16 mp_a_x mul 192 moveto (bytecode.jump\(contLbl\);) show
+16 mp_a_x mul 180 moveto (bytecode.label\(funLbl\);) show
+16 mp_a_x mul 168 moveto (lexEnv.extend\(expr.getParams\(\)\);) show
+16 mp_a_x mul 156 moveto (expr.getBody\(\).accept\(this\);) show
+16 mp_a_x mul 144 moveto (lexEnv.drop\(expr.getParams\(\).size\(\)\);) show
+16 mp_a_x mul 132 moveto (// par sécurité  \(retour "forcé"\)) show
+16 mp_a_x mul 120 moveto (bytecode.push\(new Unit\(\)\);) show
+16 mp_a_x mul 108 moveto (bytecode.bcReturn\(\);) show
+16 mp_a_x mul 96 moveto (// continuation) show
+16 mp_a_x mul 84 moveto (bytecode.label\(contLbl\);) show
+16 mp_a_x mul 72 moveto (bytecode.push\(new Fun\(funLbl\)\);) show
+8 mp_a_x mul 60 moveto (}) show
+8 mp_a_x mul 36 moveto (@Override) show
+8 mp_a_x mul 24 moveto (public void visit\(KEchange stmt\) {) show
+12 mp_a_x mul 12 moveto (int ref_g = -1;) show
+12 mp_a_x mul 0 moveto (int ref_d = -1;) show
+grestore
+gsave
+18 396 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:17:35 CET) show
+80 mp_a_x mul dup (Page 4) stringwidth pop sub 3 sub 796 moveto (Page 4) show
+fnamefont setfont
+(backend/Compiler.java) stringwidth pop sub 2 div 796 moveto
+(backend/Compiler.java) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+12 mp_a_x mul 768 moveto (boolean global_g = true;) show
+12 mp_a_x mul 756 moveto (boolean global_d = true;) show
+12 mp_a_x mul 732 moveto (try {) show
+16 mp_a_x mul 720 moveto (ref_g    = lexEnv.fetch\(stmt.getVarNameG\(\)\);) show
+16 mp_a_x mul 708 moveto (bytecode.fetch\(ref_g\);) show
+16 mp_a_x mul 696 moveto (global_g = false;) show
+12 mp_a_x mul 684 moveto (} catch\(LexicalEnv.VarNotFound e\) {) show
+16 mp_a_x mul 672 moveto (try {) show
+20 mp_a_x mul 660 moveto (ref_g = globEnv.fetch\(stmt.getVarNameG\(\)\);) show
+20 mp_a_x mul 648 moveto (bytecode.gfetch\(ref_g\);) show
+16 mp_a_x mul 636 moveto (} catch\(GlobalEnv.VarNotFound ee\) {) show
+20 mp_a_x mul 624 moveto (throw new CompileError\(stmt, "Unknown variable to exchange t) show
+0 612 moveto (o: " + stmt.getVarNameG\(\)\);) show
+16 mp_a_x mul 600 moveto (}) show
+12 mp_a_x mul 588 moveto (}) show
+12 mp_a_x mul 564 moveto (try {) show
+16 mp_a_x mul 552 moveto (ref_d   = lexEnv.fetch\(stmt.getVarNameD\(\)\);) show
+16 mp_a_x mul 540 moveto (bytecode.fetch\(ref_d\);) show
+16 mp_a_x mul 528 moveto (global_d = false;) show
+12 mp_a_x mul 516 moveto (} catch\(LexicalEnv.VarNotFound e\) {) show
+16 mp_a_x mul 504 moveto (try {) show
+20 mp_a_x mul 492 moveto (ref_d = globEnv.fetch\(stmt.getVarNameD\(\)\);) show
+20 mp_a_x mul 480 moveto (bytecode.gfetch\(ref_d\);) show
+20 mp_a_x mul 468 moveto (System.out.println\("Global ref_d = " + ref_d\);) show
+16 mp_a_x mul 456 moveto (} catch\(GlobalEnv.VarNotFound ee\) {) show
+20 mp_a_x mul 444 moveto (throw new CompileError\(stmt, "Unknown variable to exchange t) show
+0 432 moveto (o: " + stmt.getVarNameD\(\)\);) show
+16 mp_a_x mul 420 moveto (}) show
+12 mp_a_x mul 408 moveto (}) show
+12 mp_a_x mul 384 moveto (if \(global_g\) {) show
+16 mp_a_x mul 372 moveto (bytecode.gstore\(ref_g\);) show
+12 mp_a_x mul 360 moveto (} else {) show
+16 mp_a_x mul 348 moveto (bytecode.store\(ref_g\);) show
+12 mp_a_x mul 336 moveto (}) show
+12 mp_a_x mul 312 moveto (if \(global_d\) {) show
+16 mp_a_x mul 300 moveto (bytecode.gstore\(ref_d\);) show
+12 mp_a_x mul 288 moveto (} else {) show
+16 mp_a_x mul 276 moveto (bytecode.store\(ref_d\);) show
+12 mp_a_x mul 264 moveto (}) show
+8 mp_a_x mul 252 moveto (}) show
+8 mp_a_x mul 228 moveto (@Override) show
+8 mp_a_x mul 216 moveto (public void visit\(KWhile stmt\) {) show
+16 mp_a_x mul 204 moveto (String condLbl  = nextLabel\(\);) show
+16 mp_a_x mul 192 moveto (String finLbl = nextLabel\(\);) show
+16 mp_a_x mul 168 moveto (bytecode.label\(condLbl\);) show
+48 mp_a_x mul 168 moveto (// condLbl :) show
+16 mp_a_x mul 156 moveto (stmt.getCond\(\).accept\(this\);) show
+48 mp_a_x mul 156 moveto (//     ... code du cond) show
+16 mp_a_x mul 144 moveto (bytecode.jfalse\(finLbl\);) show
+48 mp_a_x mul 144 moveto (// JFALSE finLbl) show
+16 mp_a_x mul 132 moveto (stmt.getCorps\(\).accept\(this\);) show
+48 mp_a_x mul 132 moveto (//     ... code du corps) show
+16 mp_a_x mul 120 moveto (bytecode.jump\(condLbl\);) show
+48 mp_a_x mul 120 moveto (// JUMP condLbl) show
+16 mp_a_x mul 108 moveto (bytecode.label\(finLbl\);) show
+48 mp_a_x mul 108 moveto (// finLbl :) show
+16 mp_a_x mul 72 moveto (/***** Mieux a la KNUTH) show
+16 mp_a_x mul 60 moveto (String condLbl  = nextLabel\(\);) show
+16 mp_a_x mul 48 moveto (String corpsLbl = nextLabel\(\);) show
+16 mp_a_x mul 24 moveto (bytecode.jump\(condLbl\);) show
+48 mp_a_x mul 24 moveto (// saut vers le cond d'abord) show
+16 mp_a_x mul 12 moveto (bytecode.label\(corpsLbl\);) show
+48 mp_a_x mul 12 moveto (// corpsLbl :) show
+16 mp_a_x mul 0 moveto (stmt.getCorps\(\).accept\(this\);) show
+48 mp_a_x mul 0 moveto (//     ... code du corps) show
+grestore
+restore
+showpage
+%%Page: 3 3
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:17:35 CET) show
+80 mp_a_x mul dup (Page 5) stringwidth pop sub 3 sub 796 moveto (Page 5) show
+fnamefont setfont
+(backend/Compiler.java) stringwidth pop sub 2 div 796 moveto
+(backend/Compiler.java) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+16 mp_a_x mul 780 moveto (bytecode.label\(condLbl\);) show
+48 mp_a_x mul 780 moveto (// condLbl :) show
+16 mp_a_x mul 768 moveto (stmt.getCond\(\).accept\(this\);) show
+48 mp_a_x mul 768 moveto (//     ... code du cond) show
+16 mp_a_x mul 756 moveto (bytecode.jtrue\(corpsLbl\);) show
+48 mp_a_x mul 756 moveto (// ON A JFALSE, MAIS PAS JTRUE) show
+16 mp_a_x mul 744 moveto (*****/) show
+8 mp_a_x mul 732 moveto (}) show
+4 mp_a_x mul 696 moveto (public class CompileError extends java.lang.Error {) show
+16 mp_a_x mul 684 moveto (private static final long serialVersionUID = -723059668318220832) show
+0 672 moveto (3L;) show
+16 mp_a_x mul 648 moveto (private KASTNode kast;) show
+16 mp_a_x mul 624 moveto (public CompileError\(KASTNode kast, String msg\) {) show
+24 mp_a_x mul 612 moveto (super\(msg\);) show
+24 mp_a_x mul 600 moveto (this.kast = kast;) show
+16 mp_a_x mul 588 moveto (}) show
+16 mp_a_x mul 564 moveto (public KASTNode getASTNode\(\) {) show
+24 mp_a_x mul 552 moveto (return kast;) show
+16 mp_a_x mul 540 moveto (}) show
+8 mp_a_x mul 516 moveto (}) show
+8 mp_a_x mul 492 moveto (public String genCDeclarations\(\) {) show
+16 mp_a_x mul 480 moveto (StringBuilder buf = new StringBuilder\(\);) show
+16 mp_a_x mul 468 moveto (buf.append\("/* Fichier généré automatiquement : ne pas édite) show
+0 456 moveto (r. */\\n\\n"\);) show
+16 mp_a_x mul 432 moveto (buf.append\(Bytecode.genCDeclarations\(\)\);) show
+16 mp_a_x mul 420 moveto (buf.append\(primEnv.genCDeclarations\(\)\);) show
+16 mp_a_x mul 396 moveto (return buf.toString\(\);) show
+8 mp_a_x mul 384 moveto (}) show
+8 mp_a_x mul 360 moveto (public String genCDefinitions\(\) {) show
+16 mp_a_x mul 348 moveto (StringBuilder buf = new StringBuilder\(\);) show
+16 mp_a_x mul 336 moveto (buf.append\("/* Fichier généré automatiquement : ne pas édite) show
+0 324 moveto (r. */\\n\\n"\);) show
+16 mp_a_x mul 300 moveto (buf.append\(Bytecode.genCDefinitions\(\)\);) show
+16 mp_a_x mul 288 moveto (buf.append\(primEnv.genCDefinitions\(\)\);) show
+16 mp_a_x mul 264 moveto (return buf.toString\(\);) show
+8 mp_a_x mul 252 moveto (}) show
+0 228 moveto (}) show
+grestore
+restore
+showpage
+%%Trailer
+%%Pages: 3
