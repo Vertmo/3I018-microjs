@@ -11,7 +11,7 @@
  * LI223 : Initiation à la compilation et aux machines virtuelles
  *
  * La machine virtuelle est implémentée dans le langage C.
- * 
+ *
  * Le mode de navigation privilégié consiste à parcourir les fichiers
  * (en-têtes .h et modules .c) composant le projet.
  *
@@ -120,13 +120,13 @@ int main(int argc, char *argv[]) {
   } else {
     gc_freq = DEFAULT_GC_FREQUENCY;
   }
-  
+
   /* et maintenant on charge le bytecode */
-  
+
   printf("loading bytecode file: %s\n",filename);
 
   program_t program;
-  
+
   // on lit tout d'abord le fichier de bytecode
   bytecode_read(&program, filename);
   if(debug_vm) {
@@ -134,20 +134,20 @@ int main(int argc, char *argv[]) {
     bytecode_print(&program);
     printf("===================\n");
   }
- 
+
   // Initialisation de la VM avec une fréquence de collection
   // initialisée à 3 pour pouvoir regarder le GC en action facilement.
   if(debug_vm) {
     printf("Initializing VM with GC frequency=%d\n",gc_freq);
   }
-  vm_t * vm = init_vm(&program, debug_vm, debug_gc, gc_freq);                                          
+  vm_t * vm = init_vm(&program, debug_vm, debug_gc, gc_freq);
 
   // puis on l'exécute
   printf("-------------------\n");
   if(debug_vm) {
     printf("=== Begin execution ====\n");
   }
-  vm_execute(vm);                                  
+  vm_execute(vm);
 
   // et finalement on récupère la mémoire du bytecode
   bytecode_destroy(&program);
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
   if(debug_vm) {
     printf("=== Finish execution ====\n");
   }
-  
+
   printf("-------------------\n");
   printf("VM stopping\n");
 
@@ -202,6 +202,6 @@ int parse_gc_freq(int index, char *argv[]) {
     fprintf(stderr,"GC frequency should be positive, given: %d\n",(int) val);
     exit(EXIT_FAILURE);
   }
-  
+
   return (int) val;
-} 
+}

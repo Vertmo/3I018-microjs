@@ -32,7 +32,7 @@ docs:
 	doxygen
 
 archive: Makefile $(SOURCES)
-	tar cvzf nativevm.tar.gz Makefile $(SOURCES) 
+	tar cvzf nativevm.tar.gz Makefile $(SOURCES)
 
 clean:
 	rm -f $(OBJECTS)

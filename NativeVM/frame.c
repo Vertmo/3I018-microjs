@@ -19,14 +19,14 @@ frame_t *frame_push(frame_t *frame,
                     env_t *env,
                     unsigned int sp,
                     unsigned int pc) {
-  frame_t *res = (frame_t *) malloc(sizeof(frame_t));  
+  frame_t *res = (frame_t *) malloc(sizeof(frame_t));
   assert(res!=NULL);
 
   res->sp = sp;
   res->env = env;
-  res->pc = pc;                                               
-  res->caller_frame = frame;  
-  
+  res->pc = pc;
+  res->caller_frame = frame;
+
   return res;
 }
 
@@ -34,9 +34,9 @@ frame_t *frame_push(frame_t *frame,
  */
 frame_t *frame_pop(frame_t *frame) {
   frame_t *caller_frame = frame->caller_frame;
-  
+
   free(frame); // puis détruire le cadre de pile
-  
+
   return caller_frame;
 }
 
@@ -51,4 +51,3 @@ void frame_print(frame_t *frame) {
     printf("END");
   }
 }
- 

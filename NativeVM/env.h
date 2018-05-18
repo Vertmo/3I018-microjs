@@ -30,12 +30,12 @@ typedef struct _env {
   struct _env *next; /*!< environnement suivant (ou "englobant") dans la chaîne. */
 } env_t;
 
-/* 
+/*
  * Fonctions de manipulation des environnements.
  */
 
-value_t *env_fetch(env_t *env, unsigned int pos);    
-void env_store(env_t *env, unsigned int pos, value_t *nvalue); 
-void env_print(env_t *env);                    
+value_t *env_fetch(env_t *env, unsigned int pos);
+void env_store(env_t *env, unsigned int pos, value_t *nvalue);
+void env_print(env_t *env);
 
 #endif

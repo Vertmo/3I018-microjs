@@ -28,7 +28,7 @@ static void value_mark_and_trace(gc_t * gc, value_t *value) {
     pair_mark_and_trace(gc, value->data.as_pair);
   } else if(value_is_closure(value)) {
     // marquer la fermeture.
-    closure_mark_and_trace(gc, &(value->data.as_closure)); 
+    closure_mark_and_trace(gc, &(value->data.as_closure));
   } // les autres types de valeur ne sont pas gérés par le GC
 }
 
@@ -95,7 +95,7 @@ static void frame_mark_and_trace(gc_t * gc, frame_t *frame) {
   }
 }
 
-  
+
 /** Marquage/traçage depuis les racines de la machine virtuelle.
  * Il s'agit du point d'entrée pour la phase de marquage de l'algorithme de GC.
  */

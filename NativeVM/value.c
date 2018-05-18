@@ -92,8 +92,8 @@ int value_is_int(value_t *value)     { return value->type == T_INT; }
 int value_is_bool(value_t *value)    { return value->type == T_BOOL; }
 
 /** Tester si la valeur est la paire vide */
-int value_is_nil(value_t *value)  { 
-  assert(value->type == T_PAIR); 
+int value_is_nil(value_t *value)  {
+  assert(value->type == T_PAIR);
   return value->data.as_pair == NULL;
 }
 
@@ -104,8 +104,8 @@ int value_is_true(value_t *value)  {
 }
 
 /** Tester si la valeur est #f */
-int value_is_false(value_t *value)  { 
-  assert(value->type == T_BOOL); 
+int value_is_false(value_t *value)  {
+  assert(value->type == T_BOOL);
   return value->data.as_int == 0;
 }
 
@@ -159,7 +159,7 @@ extern pair_t * gc_alloc_pair(struct _vm *vm);
 /** Pour une valeur de type paire, assigner le car (premier élément).
  * \param[in,out] value la valeur à modifier.
  * \param[in] car le nouveau car pour la valeur.
- */  
+ */
 void value_set_car(struct _vm *vm, value_t *value, value_t *car) {
   // Précondition: la valeur est une paire
   assert(value_is_pair(value));
@@ -168,16 +168,16 @@ void value_set_car(struct _vm *vm, value_t *value, value_t *car) {
   // si on n'a pas encore alloué de couple, on le fait maintenant
   if(pair==NULL)  {
     pair = (pair_t *) gc_alloc_pair(vm);
-    value->data.as_pair = pair; 
+    value->data.as_pair = pair;
   }
-  
+
   pair->car = *car;
 }
 
 /** Pour une valeur de type liste (paire), assigner le cdr (second élément).
  * \param[in,out] value la valeur à modifier.
  * \param[in] cdr le cdr pour la valeur.
- */ 
+ */
 void value_set_cdr(struct _vm *vm, value_t *value, value_t *cdr) {
   assert(value_is_pair(value));
   pair_t *pair = value->data.as_pair;
@@ -185,9 +185,9 @@ void value_set_cdr(struct _vm *vm, value_t *value, value_t *cdr) {
   // si on n'a pas encore alloué de couple, on le fait maintenant
   if(pair==NULL)  {
     pair = (pair_t *) gc_alloc_pair(vm);
-    value->data.as_pair = pair; 
+    value->data.as_pair = pair;
   }
-  
+
   pair->cdr = *cdr;
 }
 
@@ -201,7 +201,7 @@ static void value_print_intern(value_t *value, int in_cdr) {
   if(value->type == T_PAIR) {
 
     if(!in_cdr) printf("(");
-    
+
     if(value->data.as_pair) {
       if(in_cdr) printf(" ");
       value_print_intern(&(value->data.as_pair->car), 0);
@@ -214,23 +214,23 @@ static void value_print_intern(value_t *value, int in_cdr) {
     if(in_cdr) printf(". ");
 
     switch(value->type) {
-    case T_UNIT: 
-      printf("<unit>"); 
+    case T_UNIT:
+      printf("<unit>");
       break;
-    case T_PRIM: 
+    case T_PRIM:
       printf("Primitive[%d]", value->data.as_int);
       break;
-    case T_FUN: 
+    case T_FUN:
       printf("Closure@%d", value->data.as_closure.pc);
       printf(" - ");
       env_print(value->data.as_closure.env);
       printf(">");
       break;
-    case T_INT:  
-      printf("%d", value->data.as_int); 
+    case T_INT:
+      printf("%d", value->data.as_int);
       break;
-    case T_BOOL: 
-      printf(value->data.as_int ? "#t" : "#f"); 
+    case T_BOOL:
+      printf(value->data.as_int ? "#t" : "#f");
       break;
     case T_PAIR: // déjà traité
       break;

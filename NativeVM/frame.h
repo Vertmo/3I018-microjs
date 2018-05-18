@@ -27,10 +27,10 @@
  */
 
 typedef struct _frame {
-  env_t *env;    /*!< l'environnement lexical du cadre d'appel. */         
+  env_t *env;    /*!< l'environnement lexical du cadre d'appel. */
   unsigned int sp;      /*!< le pointeur de pile */
   unsigned int pc;      /*!< le PC de l'appelant pour le retour de fonction */
-  struct _frame *caller_frame; /*!< le cadre d'appel de l'appelant (ou cadre parent) */         
+  struct _frame *caller_frame; /*!< le cadre d'appel de l'appelant (ou cadre parent) */
 } frame_t;
 
 /* Manipulation des cadres d'appel */

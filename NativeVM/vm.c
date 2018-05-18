@@ -15,7 +15,7 @@
  * \param[in] program le programme en bytecode à exécuter.
  * \param[in] debug_vm VM en mode debug (1) ou non (0)
  * \param[in] debug_gc GC en mode debug (1) ou non (0)
- * \param[in] collection_frequency la fréquence de ramassage de la mémoire 
+ * \param[in] collection_frequency la fréquence de ramassage de la mémoire
  *  par le GC.
  * \return un état initial pour la VM.
  */
@@ -106,13 +106,13 @@ void vm_execute_instr(vm_t *vm, int instr) {
     // empilement d'une valeur
   case I_PUSH: {
     value_t value;
-    
+
     switch(vm_next(vm)) {
     case T_INT: // placer un entier
-      value_fill_int(&value, vm_next(vm)); 
+      value_fill_int(&value, vm_next(vm));
       break;
     case T_UNIT: // placer la valeur unit
-      value_fill_unit(&value); 
+      value_fill_unit(&value);
       break;
     case T_FUN: { // placer une fermeture
 	closure_t closure;
@@ -154,13 +154,13 @@ void vm_execute_instr(vm_t *vm, int instr) {
     }
   }
     break;
-    
+
     // appeler une fermeture (fonction) ou une primitive
   case I_CALL: {
     // récupérer la fermeture ou la primitive
     value_t *fun = varray_pop(vm->stack);
     int nb_args = vm_next(vm);
-    
+
     switch(fun->type) {
         // si c'est une fermeture
       case T_FUN: {
@@ -215,7 +215,7 @@ void vm_execute_instr(vm_t *vm, int instr) {
     vm->frame->pc = vm->program->bytecode[vm->frame->pc];
     break;
 
-    // si le sommet de pile est faux, alors on effectue le saut, 
+    // si le sommet de pile est faux, alors on effectue le saut,
     // sinon on dépile simplement
   case I_JFALSE:
     if(value_is_false(varray_pop(vm->stack))) {
@@ -274,12 +274,12 @@ void vm_execute(vm_t * vm) {
     printf("\n");
   }
 
-  while(vm->frame->pc < vm->program->size) {   
+  while(vm->frame->pc < vm->program->size) {
 
     vm_execute_instr(vm, vm_next(vm));
 
     instr_counter = instr_counter + 1;
-    
+
     if(instr_counter==vm->gc->collection_frequency) {
       // on force le GC
       gc_collect(vm);

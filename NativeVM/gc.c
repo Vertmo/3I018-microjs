@@ -3,10 +3,10 @@
  *   implantation
  *
  * Les valeurs allouées par la VM sont les fermetures et les paires.
- * Chaque valeur allouée est munie d'un entête exploité par le mécanisme 
+ * Chaque valeur allouée est munie d'un entête exploité par le mécanisme
  * de récupération de la mémoire. L'algorithme de récupération de la
  * mémoire est "mark and sweep". Il repose sur le principe suivant:
- *  1) parcourir et marquer l'ensemble des valeurs accessibles depuis 
+ *  1) parcourir et marquer l'ensemble des valeurs accessibles depuis
  *     les ressources de la VM (pile et environnement);
  *  2) parcourir l'ensemble de toutes les valeurs qui ont été allouées
  *     en supprimant celles qui n'ont pas été marquées.
@@ -58,7 +58,7 @@ static void gc_delete(gc_cell_t *cell) {
     printf("[ABORT] Cannot delete cell : Unknown cell type '%d'\n",cell->type);
     abort();
   }
-  
+
   free(cell);
 }
 
@@ -87,17 +87,17 @@ static void gc_sweep(gc_t * gc) {
   // the old mark
   gc_cell_t *prev;
   gc_cell_t *cell;
-  
+
   // the first object is "empty": pass it
   prev = &(gc->heap);
   cell = prev->next;
   // while the end of heap is not reached
-  while(cell != NULL) { 
+  while(cell != NULL) {
     // tester la marque
-    if (gc_cell_mark(cell) != gc->current_mark) { 
+    if (gc_cell_mark(cell) != gc->current_mark) {
       // si la cellule n'a pas été marquée, on la récupère
       if(gc->debug_gc) {
-        printf("[GC]    free cell %p\n", (void *) cell); 
+        printf("[GC]    free cell %p\n", (void *) cell);
       }
       prev->next = cell->next;
       gc_delete(cell);
@@ -116,29 +116,29 @@ void gc_collect(vm_t * vm) {
   if(vm->gc->debug_gc) {
     printf("[GC] Collector started\n");
   }
-  
+
   // alterner la marque courante
   // => comme tout était marqué à l'issu de la dernière récupération
   // maintenant on a tout "démarqué" d'un seul coup
-  vm->gc->current_mark = (vm->gc->current_mark==0) ? 1 : 0;                                     
+  vm->gc->current_mark = (vm->gc->current_mark==0) ? 1 : 0;
   if(vm->gc->debug_gc) {
     printf("[GC] Current mark set to : %d\n",vm->gc->current_mark);
   }
 
   // on va recompter le nombre d'objets alloués effectivement (ce sont ceux qui
   // resteront à la fin du mark&sweep)
-  vm->gc->nb_allocated = 0;                                   
-  
+  vm->gc->nb_allocated = 0;
+
   // Phase 1 : marquage depuis les racines de la VM
   mark_and_trace_roots(vm);
-  
+
   // Phase 2 : sweep
   gc_sweep(vm->gc);
 
   if(vm->gc->debug_gc) {
     printf("[GC] Collector finished\n");
   }
-  
+
 }
 
 /** Allocation d'une cellule pour le GC et chaînage dans le tas.
@@ -150,7 +150,7 @@ static gc_cell_t * gc_alloc_cell(gc_t * gc) {
   assert(cell!=NULL);
   cell->next = gc->heap.next;
   gc->heap.next = cell;
-  
+
   return cell;
 }
 
@@ -190,9 +190,9 @@ env_t* gc_alloc_env(gc_t * gc, unsigned int capacity, env_t *next) {
     // sinon on effectue l'allocation.
     env_t *env = (env_t *) malloc(sizeof(env_t));
     assert(env!=NULL);
-    
+
     env->content = varray_allocate(capacity);
-    env->content->top = capacity;  // on considère que le tableau 
+    env->content->top = capacity;  // on considère que le tableau
                                    // est plein (environnement non-dynamique)
     env->next = next; // on chaîne vers le parent.
 
@@ -217,12 +217,12 @@ static void gc_delete_env(env_t *env) {
 /** Initialisation de l'état initial du gestionaire automatique de mémoire (GC).
  * \param debug_gc GC en mode debug (1) ou non (0)
  * \param collection_frequency indique la fréquence de la récupération mémoire.
- * Cette fréquence est comptée en nombre d'instructions exécutées par la VM. 
+ * Cette fréquence est comptée en nombre d'instructions exécutées par la VM.
 */
 gc_t * init_gc(int debug_gc, int collection_frequency) {
   gc_t * gc = (gc_t *) malloc(sizeof(gc_t));
   assert(gc!=NULL);
-  
+
   gc->debug_gc = debug_gc;
   gc->current_mark         = 0;
   // le tas est circulaire
@@ -237,4 +237,3 @@ gc_t * init_gc(int debug_gc, int collection_frequency) {
 
   return gc;
 }
-
