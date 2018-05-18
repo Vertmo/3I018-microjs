@@ -52,7 +52,7 @@ public class DotGraph {
 		public boolean equals(Object obj) {
 			if(obj==null) return false;
 			if(obj==this) return true;
-		t	if(obj.getClass() != this.getClass()) return false;
+			if(obj.getClass() != this.getClass()) return false;
 			return ((Node) obj).name.equals(name);
 		}
 

@@ -34,17 +34,17 @@ vm_t * init_vm(program_t *program, int debug_vm, int debug_gc, int collection_fr
   varray_set_at(vm->globs,0,&value);
   // initialize stack
   vm->stack = varray_allocate(STACK_SIZE);
-  
+
   // initial frame
   vm->frame = frame_push(NULL, // pas de call frame parente
                          NULL, // environnement local vide
                          0,  // début de pile ... au début
                          0); // commencer par la première instruction
-  
-  
+
+
   // initialize GC
   vm->gc = init_gc(debug_gc, collection_frequency);
-  
+
   return vm;
 }
 
@@ -69,40 +69,40 @@ void vm_execute_instr(vm_t *vm, int instr) {
     printf("=== Execute next intruction ===\n");
     printf(">>> ");bytecode_print_instr(vm->program, vm->frame->pc-1);
   }
-  
+
   // en fonction de l'instruction à exécuter.
   switch(instr) {
     // allocation dans l'environnement global
-  case I_GALLOC:                        
+  case I_GALLOC:
     varray_expandn(vm->globs, 1);
     break;
-    
+
     // dépiler le sommet de pile et le placer au bon endroit dans l'environnement global
-  case I_GSTORE: 
-    varray_set_at(vm->globs, 
-                  vm_next(vm), 
+  case I_GSTORE:
+    varray_set_at(vm->globs,
+                  vm_next(vm),
                   varray_pop(vm->stack));
     break;
-    
+
     // empiler la valeur d'une variable globale
   case I_GFETCH:
-    varray_push(vm->stack, 
+    varray_push(vm->stack,
                 varray_at(vm->globs, vm_next(vm)));
     break;
-    
+
     // dépiler le sommet de pile et le sauvegarder dans l'environnement local
   case I_STORE:
-    env_store(vm->frame->env, 
-              vm_next(vm), 
+    env_store(vm->frame->env,
+              vm_next(vm),
               varray_pop(vm->stack));
     break;
-    
+
     // empiler la valeur d'une variable locale
-  case I_FETCH:   
+  case I_FETCH:
     varray_push(vm->stack,  // et on recopie
                 env_fetch(vm->frame->env, vm_next(vm)));
     break;
-      
+
     // empilement d'une valeur
   case I_PUSH: {
     value_t value;
@@ -135,12 +135,12 @@ void vm_execute_instr(vm_t *vm, int instr) {
 	printf("Unknow type: %d (in push)\n", vm->program->bytecode[vm->frame->pc-1]);
 	exit(EXIT_FAILURE);
       }
-    
+
     // empiler la valeur
     varray_push(vm->stack,&value);
   }
     break;
-    
+
     // dépiler
   case I_POP: {
     value_t * val = varray_pop(vm->stack);
@@ -180,7 +180,7 @@ void vm_execute_instr(vm_t *vm, int instr) {
 	vm->frame->pc = closure.pc;
 	break;
       }
-	
+
         // Exécuter une primitive
     case T_PRIM: {
       // numéro de primitive encodée dans la valeur.
@@ -189,19 +189,19 @@ void vm_execute_instr(vm_t *vm, int instr) {
       execute_prim(vm, vm->stack, prim_num, nb_args);
       break;
     }
-	
+
     default:
       printf("Unable to call: %d\n", fun->type);
       exit(EXIT_FAILURE);
     }
   }
     break;
-      
+
     // retour de fonction
-  case I_RETURN: {             
+  case I_RETURN: {
     // la pile contient la valeur de retour au sommet [res ...]
     value_t *res = varray_pop(vm->stack);
-    
+
     assert(vm->stack->top>=vm->frame->sp);  // il faut se déplacer dans le bon sens
 
     vm->stack->top = vm->frame->sp;
@@ -209,15 +209,15 @@ void vm_execute_instr(vm_t *vm, int instr) {
     vm->frame = frame_pop(vm->frame);
   }
     break;
-      
+
     // saut inconditionnel
-  case I_JUMP:                          
+  case I_JUMP:
     vm->frame->pc = vm->program->bytecode[vm->frame->pc];
     break;
-    
+
     // si le sommet de pile est faux, alors on effectue le saut, 
     // sinon on dépile simplement
-  case I_JFALSE:                          
+  case I_JFALSE:
     if(value_is_false(varray_pop(vm->stack))) {
       vm->frame->pc = vm->program->bytecode[vm->frame->pc];
     } else {
@@ -225,16 +225,16 @@ void vm_execute_instr(vm_t *vm, int instr) {
     }
     break;
 
-    
+
 /********** Correction TD-TME9 **********/
 
-  case I_JTRUE:                          
+    /*case I_JTRUE:
     if(value_is_true(varray_pop(vm->stack))) {
       vm->frame->pc = vm->program->bytecode[vm->frame->pc];
     } else {
       vm_next(vm);
     }
-    break;
+    break;*/
 
 /********** Fin - Correction TD-TME9 **********/
 

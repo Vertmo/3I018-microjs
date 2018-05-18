@@ -45,7 +45,7 @@ int read_int(FILE *f) {
     // pas d'entier à parser
     return EOF;
   }
-  
+
   int val = -1 ;
   int res = sscanf(buf,"%d",&val);
   if(res!=1) {
@@ -53,7 +53,7 @@ int read_int(FILE *f) {
     fprintf(stderr, "parse error in bytecode for input: %s\n",buf);
     exit(EXIT_FAILURE);
   }
-  
+
   return val;
 }
 
@@ -97,11 +97,10 @@ void bytecode_read(program_t * program, const char *filename) {
     }
     program->bytecode[count]=next;
   }
-  
 }
-  
 
-/** Désallocation du segment de code. 
+
+/** Désallocation du segment de code.
  * \param[in,out] program le segment de code à désallouer. */
 void bytecode_destroy(program_t *program) {
   free(program->bytecode);
@@ -147,7 +146,7 @@ int bytecode_print_instr(program_t *program, unsigned int pc) {
       } else {
         fprintf(stderr,"Error: wrong BOOL value '%d' for PUSH\n",program->bytecode[pc+2]);
         exit(EXIT_FAILURE);
-      } 
+      }
       return pc+3;
     case T_INT:
       printf("INT %d\n", program->bytecode[pc+2]);
@@ -179,11 +178,11 @@ int bytecode_print_instr(program_t *program, unsigned int pc) {
     printf("RETURN\n");
     return pc+1;
   }
-  case I_JUMP: { 
+  case I_JUMP: {
     printf("JUMP %d\n", program->bytecode[pc+1]);
     return pc+2;
   }
-  case I_JFALSE: { 
+  case I_JFALSE: {
     printf("JFALSE %d\n", program->bytecode[pc+1]);
     return pc+2;
   }
@@ -191,21 +190,21 @@ int bytecode_print_instr(program_t *program, unsigned int pc) {
 
  /********** Correction TD-TME9 **********/
 
-   case I_JTRUE: { 
+    /*case I_JTRUE: {
     printf("JTRUE %d\n", program->bytecode[pc+1]);
     return pc+2;
-  }
+    }*/
 
 /********** Fin - Correction TD-TME9 **********/
 
-     
+
   default:
     fprintf(stderr,"Error: unknown opcode '%d'\n",opcode);
     exit(EXIT_FAILURE);
   }
 }
 
-/** Affichage d'un segment de code (pour déboguage) 
+/** Affichage d'un segment de code (pour déboguage)
  * \param[in] program le segment de code
  */
 void bytecode_print(program_t *program) {
