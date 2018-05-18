@@ -16,33 +16,33 @@ public class Let extends Statement {
     private String name;
     private Expr expr;
     private List<Statement> body;
-    
+
     public Let(String name, Expr expr, List<Statement> body, Location startPos, Location endPos) {
-    	super(startPos, endPos);		
+    	super(startPos, endPos);
     	this.name = name;
 		this.expr = expr;
         if(body == null) this.body = new ArrayList<>();
         else this.body = body;
     }
-    
+
     @Override
     public KVoidExpr expand() {
     	List<String> params = new ArrayList<String>();
     	params.add(name);
-    	
+
     	List<KStatement> kstmts = Statement.expandStatements(body);
     	KStatement kbody = KSeq.buildKSeq(kstmts, getStartPos(), getEndPos());
-    	
+
     	KClosure fun = new KClosure(params, kbody, getStartPos(), getEndPos());
-    	
+
     	List<KExpr> kargs = new ArrayList<>();
     	kargs.add(expr.expand());
-    	
+
     	KCall call = new KCall(fun, kargs, startPos, endPos);
-    	
+
     	return new KVoidExpr(call, startPos, endPos);
     }
-    
+
 	@Override
 	protected String buildDotGraph(DotGraph graph) {
 		String letNode = graph.addNode("Let[" + name + "]");
@@ -56,7 +56,7 @@ public class Let extends Statement {
 		return letNode;
 	}
 
-    
+
     @Override
     protected void prettyPrint(StringBuilder buf, int indent_level) {
     	indent(buf, indent_level);

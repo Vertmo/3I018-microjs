@@ -58,13 +58,25 @@ statements ::=		/***** pas de vide *****/
 	   }
 	   RESULT = tmp;
 	:}
- | statements:sts  statement:st
+ | statement:st  statements:sts
 	{:
 	   if (st != null) {
-	      ((LinkedList<Statement>) sts).add(st);
+	      ((LinkedList<Statement>) sts).addFirst(st);
 	   }
 	   RESULT = sts;
 	:}
+  | LET:l IDENTIFIER:var EQ expr:e SEMICOL
+  {:
+    LinkedList<Statement> tmp = new LinkedList<Statement>();
+    tmp.add(new Let(var, e, new LinkedList<Statement>(), lxleft, exright));
+    RESULT = tmp;
+  :}
+  | LET:l IDENTIFIER:var EQ expr:e SEMICOL statements:sts
+  {:
+    LinkedList<Statement> tmp = new LinkedList<Statement>();
+    tmp.add(new Let(var, e, sts, lxleft, exright));
+    RESULT = tmp;
+  :}
 ;
 
 
@@ -109,10 +121,6 @@ opened_statement ::=
 	{:
 	   RESULT = new Var(var, e, vxleft, exright);
 	:}
-  | LET:l  IDENTIFIER:var  EQ  expr:e
-	{:
-	   RESULT = new Let(var, e, null, lxleft, exright);
-	:}
   | expr:e
 	{:
 	   RESULT = new VoidExpr(e, exleft, exright);
@@ -149,9 +157,13 @@ closed_statement ::=
 	   RESULT = new While(cond, corps, wxleft, corpsxright);
 	:}
   | DO:d block:corps WHILE LPAREN expr:cond RPAREN:r
-    {: RESULT = new DoWhile(cond, corps, dxleft, rxright); :}
+  {:
+    RESULT = new DoWhile(cond, corps, dxleft, rxright);
+  :}
   | SWITCH:s LPAREN expr:cond RPAREN LCURLY cases:ca RCURLY:r
-    {: RESULT = new Switch(cond, ca, sxleft, rxright); :}
+  {:
+    RESULT = new Switch(cond, ca, sxleft, rxright);
+  :}
  ;
 
 

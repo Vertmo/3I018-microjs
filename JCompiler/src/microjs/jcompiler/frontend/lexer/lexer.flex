@@ -47,10 +47,6 @@ Identifier = [a-zA-Z][a-zA-Z0-9]*
 
 Digit = [0-9]
 
-
-
-
-
 LineTerminator = ( \u000D\u000A
 	               | [\u000A\u000B\u000C\u000D\u0085\u2028\u2029] )
     
