@@ -1,0 +1,782 @@
+%!PS-Adobe-2.0
+%%DocumentFonts: Courier Times-Bold
+%%Title: frontend/ast/While.java (mpage)
+%%Creator: mpage 2.5.6 Januari 2008
+%%CreationDate: Tue Mar  1 13:07:17 2016
+%%Orientation: Landscape
+%%DocumentMedia: Letter 612 792
+%%BoundingBox: 18 18 594 774
+%%Pages: (atend)
+%%EndComments
+
+%%BeginProlog
+
+/mp_stm usertime def
+/mp_pgc statusdict begin pagecount end def
+statusdict begin /jobname (frontend/ast/While.java) def end
+/reencsmalldict 12 dict def /ReEncodeSmall { reencsmalldict begin
+/newcodesandnames exch def /newfontname exch def /basefontname exch def
+/basefontdict basefontname findfont def /newfont basefontdict maxlength dict def
+basefontdict { exch dup /FID ne { dup /Encoding eq { exch dup length array copy newfont 3 1 roll put } { exch newfont 3 1 roll put }
+ifelse }
+  { pop pop }
+  ifelse } forall
+newfont /FontName newfontname put
+newcodesandnames aload pop newcodesandnames length 2 idiv
+{ newfont /Encoding get 3 1 roll put } repeat
+newfontname newfont definefont pop end } def
+/charvec [
+026 /Scaron
+027 /Ydieresis
+028 /Zcaron
+029 /scaron
+030 /trademark
+031 /zcaron
+032 /space
+033 /exclam
+034 /quotedbl
+035 /numbersign
+036 /dollar
+037 /percent
+038 /ampersand
+039 /quoteright
+040 /parenleft
+041 /parenright
+042 /asterisk
+043 /plus
+044 /comma
+045 /minus
+046 /period
+047 /slash
+048 /zero
+049 /one
+050 /two
+051 /three
+052 /four
+053 /five
+054 /six
+055 /seven
+056 /eight
+057 /nine
+058 /colon
+059 /semicolon
+060 /less
+061 /equal
+062 /greater
+063 /question
+064 /at
+065 /A
+066 /B
+067 /C
+068 /D
+069 /E
+070 /F
+071 /G
+072 /H
+073 /I
+074 /J
+075 /K
+076 /L
+077 /M
+078 /N
+079 /O
+080 /P
+081 /Q
+082 /R
+083 /S
+084 /T
+085 /U
+086 /V
+087 /W
+088 /X
+089 /Y
+090 /Z
+091 /bracketleft
+092 /backslash
+093 /bracketright
+094 /asciicircum
+095 /underscore
+096 /quoteleft
+097 /a
+098 /b
+099 /c
+100 /d
+101 /e
+102 /f
+103 /g
+104 /h
+105 /i
+106 /j
+107 /k
+108 /l
+109 /m
+110 /n
+111 /o
+112 /p
+113 /q
+114 /r
+115 /s
+116 /t
+117 /u
+118 /v
+119 /w
+120 /x
+121 /y
+122 /z
+123 /braceleft
+124 /bar
+125 /braceright
+126 /asciitilde
+127 /.notdef
+128 /fraction
+129 /florin
+130 /quotesingle
+131 /quotedblleft
+132 /guilsinglleft
+133 /guilsinglright
+134 /fi
+135 /fl
+136 /endash
+137 /dagger
+138 /daggerdbl
+139 /bullet
+140 /quotesinglbase
+141 /quotedblbase
+142 /quotedblright
+143 /ellipsis
+144 /dotlessi
+145 /grave
+146 /acute
+147 /circumflex
+148 /tilde
+149 /oe
+150 /breve
+151 /dotaccent
+152 /perthousand
+153 /emdash
+154 /ring
+155 /Lslash
+156 /OE
+157 /hungarumlaut
+158 /ogonek
+159 /caron
+160 /lslash
+161 /exclamdown
+162 /cent
+163 /sterling
+164 /currency
+165 /yen
+166 /brokenbar
+167 /section
+168 /dieresis
+169 /copyright
+170 /ordfeminine
+171 /guillemotleft
+172 /logicalnot
+173 /hyphen
+174 /registered
+175 /macron
+176 /degree
+177 /plusminus
+178 /twosuperior
+179 /threesuperior
+180 /acute
+181 /mu
+182 /paragraph
+183 /periodcentered
+184 /cedilla
+185 /onesuperior
+186 /ordmasculine
+187 /guillemotright
+188 /onequarter
+189 /onehalf
+190 /threequarters
+191 /questiondown
+192 /Agrave
+193 /Aacute
+194 /Acircumflex
+195 /Atilde
+196 /Adieresis
+197 /Aring
+198 /AE
+199 /Ccedilla
+200 /Egrave
+201 /Eacute
+202 /Ecircumflex
+203 /Edieresis
+204 /Igrave
+205 /Iacute
+206 /Icircumflex
+207 /Idieresis
+208 /Eth
+209 /Ntilde
+210 /Ograve
+211 /Oacute
+212 /Ocircumflex
+213 /Otilde
+214 /Odieresis
+215 /multiply
+216 /Oslash
+217 /Ugrave
+218 /Uacute
+219 /Ucircumflex
+220 /Udieresis
+221 /Yacute
+222 /Thorn
+223 /germandbls
+224 /agrave
+225 /aacute
+226 /acircumflex
+227 /atilde
+228 /adieresis
+229 /aring
+230 /ae
+231 /ccedilla
+232 /egrave
+233 /eacute
+234 /ecircumflex
+235 /edieresis
+236 /igrave
+237 /iacute
+238 /icircumflex
+239 /idieresis
+240 /eth
+241 /ntilde
+242 /ograve
+243 /oacute
+244 /ocircumflex
+245 /otilde
+246 /odieresis
+247 /divide
+248 /oslash
+249 /ugrave
+250 /uacute
+251 /ucircumflex
+252 /udieresis
+253 /yacute
+254 /thorn
+255 /ydieresis
+] def
+/Courier /OurCharSet charvec ReEncodeSmall
+/textfont /OurCharSet findfont 11 scalefont def
+/textfontbold /OurCharSet-Bold findfont 11 scalefont def
+/fnamefont /Times-Bold findfont 14 scalefont def
+/headerfont /Times-Bold findfont 12 scalefont def
+textfont setfont
+(a) stringwidth pop /mp_a_x exch def
+%%EndProlog
+%%Page: 1 1
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:19:47 CET) show
+80 mp_a_x mul dup (Page 1) stringwidth pop sub 3 sub 796 moveto (Page 1) show
+fnamefont setfont
+(frontend/ast/While.java) stringwidth pop sub 2 div 796 moveto
+(frontend/ast/While.java) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 780 moveto (package microjs.jcompiler.frontend.ast;) show
+0 756 moveto (import java.util.List;) show
+0 732 moveto (import java_cup.runtime.ComplexSymbolFactory.Location;) show
+0 720 moveto (import microjs.jcompiler.middleend.kast.KWhile;) show
+0 708 moveto (import microjs.jcompiler.middleend.kast.KSeq;) show
+0 696 moveto (import microjs.jcompiler.middleend.kast.KStatement;) show
+0 684 moveto (import microjs.jcompiler.utils.DotGraph;) show
+0 660 moveto (public class While extends Statement {) show
+4 mp_a_x mul 648 moveto (private Expr cond;) show
+4 mp_a_x mul 636 moveto (private List<Statement> corps;) show
+4 mp_a_x mul 612 moveto (public While\(Expr cond, List<Statement> corps,) show
+17 mp_a_x mul 600 moveto (Location startPos, Location endPos\) {) show
+8 mp_a_x mul 588 moveto (super\(startPos, endPos\);) show
+8 mp_a_x mul 576 moveto (this.cond  = cond;) show
+8 mp_a_x mul 564 moveto (this.corps = corps;) show
+4 mp_a_x mul 552 moveto (}) show
+4 mp_a_x mul 528 moveto (@Override) show
+4 mp_a_x mul 516 moveto (public KWhile expand\(\) {) show
+8 mp_a_x mul 504 moveto (Location whileStartPos  = getStartPos\(\);) show
+8 mp_a_x mul 492 moveto (Location corpsEndPos    = getEndPos\(\);) show
+8 mp_a_x mul 480 moveto (List<KStatement> kcorps = Statement.expandStatements\(corps\);) show
+8 mp_a_x mul 468 moveto (KStatement kcorps_s = KSeq.buildKSeq\(kcorps,) show
+45 mp_a_x mul 456 moveto (whileStartPos, corpsEndPos\);) show
+8 mp_a_x mul 444 moveto (return new KWhile\(cond.expand\(\), kcorps_s,) show
+26 mp_a_x mul 432 moveto (getStartPos\(\), getEndPos\(\)\);) show
+4 mp_a_x mul 420 moveto (}) show
+8 mp_a_x mul 396 moveto (@Override) show
+8 mp_a_x mul 384 moveto (protected String buildDotGraph\(DotGraph graph\) {) show
+16 mp_a_x mul 372 moveto (String whileNode = graph.addNode\("While"\);) show
+16 mp_a_x mul 360 moveto (String condNode = cond.buildDotGraph\(graph\);) show
+16 mp_a_x mul 348 moveto (graph.addEdge\(whileNode, condNode, "cond"\);) show
+16 mp_a_x mul 336 moveto (String corpsNode = cond.buildDotGraph\(graph\);) show
+16 mp_a_x mul 324 moveto (graph.addEdge\(whileNode, corpsNode, "corps"\);) show
+16 mp_a_x mul 300 moveto (return whileNode;) show
+8 mp_a_x mul 288 moveto (}) show
+4 mp_a_x mul 252 moveto (@Override) show
+4 mp_a_x mul 240 moveto (protected void prettyPrint\(StringBuilder buf, int indent_level\) {) show
+8 mp_a_x mul 228 moveto (indent\(buf, indent_level\);) show
+8 mp_a_x mul 216 moveto (buf.append\("while \("\);) show
+8 mp_a_x mul 204 moveto (cond.prettyPrint\(buf\);) show
+8 mp_a_x mul 192 moveto (buf.append\("\) {\\n"\);) show
+8 mp_a_x mul 180 moveto (Statement.prettyPrintStatements\(buf, corps, indent_level + 1\);) show
+8 mp_a_x mul 168 moveto (indent\(buf, indent_level\);) show
+8 mp_a_x mul 156 moveto (buf.append\("}\\n"\);) show
+4 mp_a_x mul 144 moveto (}) show
+0 132 moveto (}) show
+grestore
+restore
+showpage
+%%Page: 2 2
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 11:55:51 CET) show
+80 mp_a_x mul dup (Page 1) stringwidth pop sub 3 sub 796 moveto (Page 1) show
+fnamefont setfont
+(frontend/lexer/lexer.flex) stringwidth pop sub 2 div 796 moveto
+(frontend/lexer/lexer.flex) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 768 moveto (/* JFlex specification for JCompiler */) show
+0 744 moveto (package microjs.jcompiler.frontend.lexer;) show
+0 720 moveto (import java_cup.runtime.*;) show
+0 708 moveto (import java_cup.runtime.ComplexSymbolFactory.Location;) show
+0 696 moveto (import java_cup.runtime.ComplexSymbolFactory.ComplexSymbol;) show
+0 684 moveto (import microjs.jcompiler.frontend.parser.sym;) show
+0 660 moveto (/**) show
+mp_a_x 648 moveto (* This class is a simple example lexer.) show
+mp_a_x 636 moveto (*/) show
+0 612 moveto (%%) show
+0 588 moveto (%class Lexer) show
+0 576 moveto (%public) show
+0 564 moveto (%unicode) show
+0 552 moveto (%implements java_cup.runtime.Scanner) show
+0 540 moveto (%function next_token) show
+0 528 moveto (%type java_cup.runtime.Symbol) show
+0 516 moveto (%line) show
+0 504 moveto (%column) show
+0 480 moveto (%eofval{) show
+2 mp_a_x mul 468 moveto (return symbol\("EOF", sym.EOF\);) show
+0 456 moveto (%eofval}) show
+0 432 moveto (%{) show
+2 mp_a_x mul 420 moveto (private ComplexSymbolFactory symbolFactory = new ComplexSymbolFactory\(\);) show
+2 mp_a_x mul 408 moveto (// StringBuffer string = new StringBuffer\(\);) show
+2 mp_a_x mul 384 moveto (private Symbol symbol\(String name, int type\) {) show
+4 mp_a_x mul 372 moveto (return symbolFactory.newSymbol\(name, type,) show
+13 mp_a_x mul 360 moveto (new Location\(yyline+1, yycolumn +1\),) show
+13 mp_a_x mul 348 moveto (new Location\(yyline+1,yycolumn+yylength\(\)\)\);) show
+2 mp_a_x mul 336 moveto (}) show
+2 mp_a_x mul 324 moveto (private Symbol symbol\(String name, int type, Object value\) {) show
+4 mp_a_x mul 312 moveto (return symbolFactory.newSymbol\(name, type,) show
+13 mp_a_x mul 300 moveto (new Location\(yyline+1, yycolumn +1\),) show
+13 mp_a_x mul 288 moveto (new Location\(yyline+1,yycolumn+yylength\(\)\), value\);) show
+2 mp_a_x mul 276 moveto (}) show
+0 264 moveto (%}) show
+0 240 moveto (Identifier = [a-zA-Z][a-zA-Z0-9]* ) show
+0 216 moveto (Digit = [0-9]) show
+0 144 moveto (LineTerminator = \( \\u000D\\u000A) show
+23 mp_a_x mul 132 moveto (| [\\u000A\\u000B\\u000C\\u000D\\u0085\\u2028\\u2029] \)) show
+0 108 moveto (%x COMMENTAIRE_C) show
+0 72 moveto (%%) show
+0 36 moveto ({LineTerminator} { /* ignore */ }) show
+0 12 moveto ([ \\t\\f\\n]+) show
+16 mp_a_x mul 12 moveto ({ /* ignore */ }) show
+grestore
+gsave
+18 396 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 11:55:51 CET) show
+80 mp_a_x mul dup (Page 2) stringwidth pop sub 3 sub 796 moveto (Page 2) show
+fnamefont setfont
+(frontend/lexer/lexer.flex) stringwidth pop sub 2 div 796 moveto
+(frontend/lexer/lexer.flex) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 780 moveto ({Digit}+) show
+16 mp_a_x mul 780 moveto ({ return symbol\("INT", sym.INT, Integer.parseInt\(yytext\(\)\)\); }) show
+0 744 moveto (var) show
+16 mp_a_x mul 744 moveto ({ return symbol\("VAR", sym.VAR\); }) show
+0 732 moveto (let) show
+16 mp_a_x mul 732 moveto ({ return symbol\("LET", sym.LET\); }) show
+0 720 moveto (true) show
+16 mp_a_x mul 720 moveto ({ return symbol\("BOOL", sym.BOOL, true\); }) show
+0 708 moveto (false) show
+16 mp_a_x mul 708 moveto ({ return symbol\("BOOL", sym.BOOL, false\); }) show
+0 696 moveto (if) show
+16 mp_a_x mul 696 moveto ({ return symbol\("IF", sym.IF\); }) show
+0 684 moveto (else) show
+16 mp_a_x mul 684 moveto ({ return symbol\("ELSE", sym.ELSE\); }) show
+0 672 moveto (function) show
+16 mp_a_x mul 672 moveto ({ return symbol\("FUNCTION", sym.FUNCTION\); }) show
+0 660 moveto (lambda) show
+16 mp_a_x mul 660 moveto ({ return symbol\("LAMBDA", sym.LAMBDA\); }) show
+0 648 moveto (return) show
+16 mp_a_x mul 648 moveto ({ return symbol\("RETURN", sym.RETURN\); }) show
+0 624 moveto (while) show
+16 mp_a_x mul 624 moveto ({ return symbol\("WHILE", sym.WHILE\); }) show
+0 600 moveto (\\;) show
+16 mp_a_x mul 600 moveto ({ return symbol\("SEMICOL", sym.SEMICOL\); }) show
+0 588 moveto (\\,) show
+16 mp_a_x mul 588 moveto ({ return symbol\("COMMA", sym.COMMA\); }) show
+0 576 moveto (\\=) show
+16 mp_a_x mul 576 moveto ({ return symbol\("EQ", sym.EQ\); }) show
+0 564 moveto (\\{) show
+16 mp_a_x mul 564 moveto ({ return symbol\("LCURLY", sym.LCURLY\); }) show
+0 552 moveto (\\}) show
+16 mp_a_x mul 552 moveto ({ return symbol\("RCURLY", sym.RCURLY\); }) show
+0 540 moveto (\\\() show
+16 mp_a_x mul 540 moveto ({ return symbol\("LPAREN", sym.LPAREN\); }) show
+0 528 moveto (\\\)) show
+16 mp_a_x mul 528 moveto ({ return symbol\("RPAREN", sym.RPAREN\); }) show
+0 516 moveto (\\+) show
+16 mp_a_x mul 516 moveto ({ return symbol\("PLUS", sym.PLUS\); }) show
+0 504 moveto (\\-) show
+16 mp_a_x mul 504 moveto ({ return symbol\("MINUS", sym.MINUS\); }) show
+0 492 moveto (\\*) show
+16 mp_a_x mul 492 moveto ({ return symbol\("TIMES", sym.TIMES\); }) show
+0 480 moveto (\\/) show
+16 mp_a_x mul 480 moveto ({ return symbol\("DIV", sym.DIV\); }) show
+0 468 moveto ("==") show
+16 mp_a_x mul 468 moveto ({ return symbol\("EQEQ", sym.EQEQ\); }) show
+0 444 moveto ("<->") show
+16 mp_a_x mul 444 moveto ({ return symbol\("ECHANGE", sym.ECHANGE\); }) show
+0 420 moveto ({Identifier}) show
+16 mp_a_x mul 420 moveto ({ return symbol\("IDENTIFIER", sym.IDENTIFIER, yytext\(\)\); }) show
+0 396 moveto (\\/\\/.*\\R) show
+16 mp_a_x mul 396 moveto ({ /* ignore */ }) show
+40 mp_a_x mul 396 moveto (/* commentaire en ligne */) show
+0 372 moveto ("/*"                      { yybegin\(COMMENTAIRE_C\); } /* commentaire C */) show
+0 360 moveto (<COMMENTAIRE_C>[^*]+      { /* ignore */ }) show
+0 348 moveto (<COMMENTAIRE_C>\\*+        { /* ignore */ }) show
+0 336 moveto (<COMMENTAIRE_C>\\**"*/"    { yybegin\(YYINITIAL\); }) show
+0 300 moveto (/* error fallback */) show
+0 288 moveto (.                         {  // very strange "bug") show
+28 mp_a_x mul 276 moveto (if \(yytext\(\) == "\\\\u000A"\) { /* ignore */) show
+31 mp_a_x mul 264 moveto (System.err.println\() show
+33 mp_a_x mul 252 moveto ("WARNING: strange fallback character"\);) show
+28 mp_a_x mul 240 moveto (} else { throw new Error\("Illegal character <"+) show
+54 mp_a_x mul 228 moveto (yytext\(\)+">"\); }) show
+26 mp_a_x mul 204 moveto (}) show
+grestore
+restore
+showpage
+%%Page: 3 3
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:16:18 CET) show
+80 mp_a_x mul dup (Page 1) stringwidth pop sub 3 sub 796 moveto (Page 1) show
+fnamefont setfont
+(frontend/parser/parser.cup) stringwidth pop sub 2 div 796 moveto
+(frontend/parser/parser.cup) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 780 moveto (package microjs.jcompiler.frontend.parser;) show
+0 756 moveto (import java.util.List;) show
+0 744 moveto (import java.util.LinkedList;) show
+0 720 moveto (import java_cup.runtime.*;) show
+0 708 moveto (import microjs.jcompiler.frontend.lexer.Lexer;) show
+0 696 moveto (import microjs.jcompiler.frontend.ast.*;) show
+0 672 moveto (terminal VAR, LET, EQ,) show
+9 mp_a_x mul 660 moveto (LPAREN, RPAREN, LCURLY, RCURLY, /* LBRACKET, RBRACKET, */) show
+9 mp_a_x mul 648 moveto (IF, ELSE,) show
+9 mp_a_x mul 636 moveto (FUNCTION, LAMBDA, RETURN,) show
+9 mp_a_x mul 624 moveto (EQEQ, PLUS, MINUS, TIMES, DIV,) show
+9 mp_a_x mul 612 moveto (SEMICOL, COMMA;) show
+0 588 moveto (terminal END;) show
+0 564 moveto (terminal ECHANGE;) show
+0 552 moveto (terminal WHILE;) show
+0 528 moveto (terminal String IDENTIFIER;) show
+0 516 moveto (terminal Integer INT;) show
+0 504 moveto (terminal Boolean BOOL;) show
+0 480 moveto (non terminal Prog) show
+24 mp_a_x mul 480 moveto (program;) show
+0 468 moveto (non terminal Statement) show
+24 mp_a_x mul 468 moveto (statement;) show
+0 456 moveto (non terminal Statement) show
+24 mp_a_x mul 456 moveto (opened_statement, closed_statement;) show
+0 444 moveto (non terminal Expr) show
+24 mp_a_x mul 444 moveto (expr;) show
+0 432 moveto (non terminal Statement) show
+24 mp_a_x mul 432 moveto (function;) show
+0 408 moveto (non terminal List<Statement> statements;) show
+0 396 moveto (non terminal List<Statement> block;) show
+0 384 moveto (non terminal List<String>    parameters;) show
+0 372 moveto (non terminal List<Expr>      arguments;) show
+0 348 moveto (precedence left) show
+20 mp_a_x mul 348 moveto (EQEQ;) show
+0 336 moveto (precedence left) show
+20 mp_a_x mul 336 moveto (PLUS, MINUS;) show
+0 324 moveto (precedence left) show
+20 mp_a_x mul 324 moveto (TIMES, DIV;) show
+0 288 moveto (program ::=) show
+2 mp_a_x mul 276 moveto (statements:prog) show
+8 mp_a_x mul 264 moveto ({: RESULT = new Prog\("", prog, progxleft, progxright\); :}) show
+0 252 moveto (;) show
+0 216 moveto (statements ::=) show
+24 mp_a_x mul 216 moveto (/***** pas de vide *****/) show
+4 mp_a_x mul 204 moveto (statement:st) show
+8 mp_a_x mul 192 moveto ({:) show
+11 mp_a_x mul 180 moveto (LinkedList<Statement> tmp = new LinkedList<Statement>\(\);) show
+11 mp_a_x mul 168 moveto (if \(st != null\) {) show
+14 mp_a_x mul 156 moveto (tmp.add\(st\);) show
+11 mp_a_x mul 144 moveto (}) show
+11 mp_a_x mul 132 moveto (RESULT = tmp;) show
+8 mp_a_x mul 120 moveto (:}) show
+mp_a_x 108 moveto (| statements:sts  statement:st) show
+8 mp_a_x mul 96 moveto ({:) show
+11 mp_a_x mul 84 moveto (if \(st != null\) {) show
+14 mp_a_x mul 72 moveto (\(\(LinkedList<Statement>\) sts\).add\(st\);) show
+11 mp_a_x mul 60 moveto (}) show
+11 mp_a_x mul 48 moveto (RESULT = sts;) show
+8 mp_a_x mul 36 moveto (:}) show
+0 24 moveto (;) show
+grestore
+gsave
+18 396 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:16:18 CET) show
+80 mp_a_x mul dup (Page 2) stringwidth pop sub 3 sub 796 moveto (Page 2) show
+fnamefont setfont
+(frontend/parser/parser.cup) stringwidth pop sub 2 div 796 moveto
+(frontend/parser/parser.cup) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 780 moveto (statement ::=) show
+4 mp_a_x mul 768 moveto (SEMICOL) show
+8 mp_a_x mul 756 moveto ({:) show
+11 mp_a_x mul 744 moveto (RESULT = null;) show
+8 mp_a_x mul 732 moveto (:}) show
+2 mp_a_x mul 720 moveto (| opened_statement:ost  SEMICOL) show
+8 mp_a_x mul 708 moveto ({:) show
+11 mp_a_x mul 696 moveto (RESULT = ost;) show
+8 mp_a_x mul 684 moveto (:}) show
+2 mp_a_x mul 672 moveto (| closed_statement:cst) show
+8 mp_a_x mul 660 moveto ({:) show
+11 mp_a_x mul 648 moveto (RESULT = cst;) show
+8 mp_a_x mul 636 moveto (:}) show
+0 624 moveto (;) show
+0 588 moveto (opened_statement ::=) show
+4 mp_a_x mul 576 moveto (IDENTIFIER:id  EQ  expr:e) show
+8 mp_a_x mul 564 moveto ({:) show
+11 mp_a_x mul 552 moveto (RESULT = new Assign\(id, e, idxleft, exright\);) show
+8 mp_a_x mul 540 moveto (:}) show
+2 mp_a_x mul 528 moveto (| VAR:v  IDENTIFIER:var  EQ  expr:e) show
+8 mp_a_x mul 516 moveto ({:) show
+11 mp_a_x mul 504 moveto (RESULT = new Var\(var, e, vxleft, exright\);) show
+8 mp_a_x mul 492 moveto (:}) show
+2 mp_a_x mul 480 moveto (| LET:l  IDENTIFIER:var  EQ  expr:e) show
+8 mp_a_x mul 468 moveto ({:) show
+11 mp_a_x mul 456 moveto (RESULT = new Let\(var, e, null, lxleft, exright\);) show
+8 mp_a_x mul 444 moveto (:}) show
+2 mp_a_x mul 432 moveto (| expr:e) show
+8 mp_a_x mul 420 moveto ({:) show
+11 mp_a_x mul 408 moveto (RESULT = new VoidExpr\(e, exleft, exright\);) show
+8 mp_a_x mul 396 moveto (:}) show
+2 mp_a_x mul 384 moveto (| RETURN:r expr:e) show
+8 mp_a_x mul 372 moveto ({:) show
+11 mp_a_x mul 360 moveto (RESULT = new Return\(e, rxleft, exright\);) show
+8 mp_a_x mul 348 moveto (:}) show
+2 mp_a_x mul 336 moveto (| IDENTIFIER:var_g  ECHANGE  IDENTIFIER:var_d) show
+8 mp_a_x mul 324 moveto ({:) show
+11 mp_a_x mul 312 moveto (RESULT = new Echange\(var_g, var_d, var_gxleft, var_dxright\);) show
+8 mp_a_x mul 300 moveto (:}) show
+0 288 moveto (;) show
+0 252 moveto (closed_statement ::=) show
+4 mp_a_x mul 240 moveto (IF:i  LPAREN  expr:cond  RPAREN  block:thens) show
+8 mp_a_x mul 228 moveto ({:) show
+11 mp_a_x mul 216 moveto (RESULT = new If\(cond,) show
+27 mp_a_x mul 204 moveto (thens,) show
+27 mp_a_x mul 192 moveto (new LinkedList<Statement>\(\),) show
+27 mp_a_x mul 180 moveto (ixleft, thensxright\);) show
+8 mp_a_x mul 168 moveto (:}) show
+2 mp_a_x mul 156 moveto (| IF:i  LPAREN  expr:cond  RPAREN  block:thens  ELSE  block:elses) show
+8 mp_a_x mul 144 moveto ({:) show
+11 mp_a_x mul 132 moveto (RESULT = new If\(cond, thens, elses, ixleft, elsesxright\);) show
+8 mp_a_x mul 120 moveto (:}) show
+2 mp_a_x mul 108 moveto (| function:f) show
+8 mp_a_x mul 96 moveto ({:) show
+11 mp_a_x mul 84 moveto (RESULT = f;) show
+8 mp_a_x mul 72 moveto (:}) show
+2 mp_a_x mul 60 moveto (| WHILE:w  LPAREN  expr:cond  RPAREN  block:corps) show
+8 mp_a_x mul 48 moveto ({:) show
+11 mp_a_x mul 36 moveto (RESULT = new While\(cond, corps, wxleft, corpsxright\);) show
+8 mp_a_x mul 24 moveto (:}) show
+mp_a_x 12 moveto (;) show
+grestore
+restore
+showpage
+%%Page: 4 4
+save
+0 setlinewidth
+18 18 moveto 0 756 rlineto
+576 0 rlineto 0 -756 rlineto closepath stroke
+18 396 moveto 576 0 rlineto stroke
+gsave
+18 774 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:16:18 CET) show
+80 mp_a_x mul dup (Page 3) stringwidth pop sub 3 sub 796 moveto (Page 3) show
+fnamefont setfont
+(frontend/parser/parser.cup) stringwidth pop sub 2 div 796 moveto
+(frontend/parser/parser.cup) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+0 768 moveto (function ::=) show
+4 mp_a_x mul 756 moveto (FUNCTION:f  IDENTIFIER:id  LPAREN  RPAREN  block:body) show
+8 mp_a_x mul 744 moveto ({:) show
+11 mp_a_x mul 732 moveto (RESULT = new Function\(id, new LinkedList<String>\(\),) show
+33 mp_a_x mul 720 moveto (body, fxleft, bodyxright\);) show
+8 mp_a_x mul 708 moveto (:}) show
+2 mp_a_x mul 696 moveto (| FUNCTION:f  IDENTIFIER:id  LPAREN  parameters:params  RPAREN  block:body) show
+8 mp_a_x mul 684 moveto ({:) show
+11 mp_a_x mul 672 moveto (RESULT = new Function\(id, params, body, fxleft, bodyxright\);) show
+8 mp_a_x mul 660 moveto (:}) show
+0 648 moveto (;) show
+0 612 moveto (block ::=) show
+4 mp_a_x mul 600 moveto (LCURLY  RCURLY) show
+8 mp_a_x mul 588 moveto ({:) show
+11 mp_a_x mul 576 moveto (RESULT = new LinkedList<Statement>\(\);) show
+8 mp_a_x mul 564 moveto (:}) show
+2 mp_a_x mul 552 moveto (| LCURLY  statements:sts  RCURLY) show
+8 mp_a_x mul 540 moveto ({:) show
+11 mp_a_x mul 528 moveto (RESULT = sts;) show
+8 mp_a_x mul 516 moveto (:}) show
+0 504 moveto (;) show
+0 468 moveto (parameters ::=) show
+24 mp_a_x mul 468 moveto (/***** pas de vide \(\) ou de \(...;;;...\) *****/) show
+4 mp_a_x mul 456 moveto (IDENTIFIER:id) show
+8 mp_a_x mul 444 moveto ({:) show
+11 mp_a_x mul 432 moveto (LinkedList<String> tempList = new LinkedList<String>\(\);) show
+11 mp_a_x mul 420 moveto (tempList.add\(id\);) show
+11 mp_a_x mul 408 moveto (RESULT = tempList;) show
+8 mp_a_x mul 396 moveto (:}) show
+2 mp_a_x mul 384 moveto (| parameters:params  COMMA  IDENTIFIER:id) show
+8 mp_a_x mul 372 moveto ({:) show
+11 mp_a_x mul 360 moveto (\(\(LinkedList<String>\)params\).add\(id\);) show
+11 mp_a_x mul 348 moveto (RESULT = params;) show
+8 mp_a_x mul 336 moveto (:}) show
+0 324 moveto (;) show
+0 288 moveto (expr ::=) show
+4 mp_a_x mul 276 moveto (INT:n) show
+8 mp_a_x mul 264 moveto ({:) show
+11 mp_a_x mul 252 moveto (RESULT = new IntConst\(n, nxleft, nxright\);) show
+8 mp_a_x mul 240 moveto (:}) show
+2 mp_a_x mul 228 moveto (| BOOL:b) show
+8 mp_a_x mul 216 moveto ({:) show
+11 mp_a_x mul 204 moveto (RESULT = new BoolConst\(b, bxleft, bxright\);) show
+8 mp_a_x mul 192 moveto (:}) show
+2 mp_a_x mul 180 moveto (| expr:fun  LPAREN:l  RPAREN:r) show
+8 mp_a_x mul 168 moveto ({:) show
+11 mp_a_x mul 156 moveto (RESULT = new Funcall\(fun, new LinkedList<Expr>\(\),) show
+32 mp_a_x mul 144 moveto (funxleft, rxright\);) show
+8 mp_a_x mul 132 moveto (:}) show
+2 mp_a_x mul 120 moveto (| expr:fun  LPAREN  arguments:args  RPAREN) show
+8 mp_a_x mul 108 moveto ({:) show
+11 mp_a_x mul 96 moveto (RESULT = new Funcall\(fun, args, funxleft, argsxright\);) show
+8 mp_a_x mul 84 moveto (:}) show
+2 mp_a_x mul 72 moveto (| LAMBDA:l  LPAREN  parameters:params  RPAREN  block:body) show
+8 mp_a_x mul 60 moveto ({:) show
+11 mp_a_x mul 48 moveto (RESULT = new Lambda\(params, body, lxleft, bodyxright\);) show
+8 mp_a_x mul 36 moveto (:} ) show
+2 mp_a_x mul 24 moveto (| IDENTIFIER:var) show
+8 mp_a_x mul 12 moveto ({:) show
+11 mp_a_x mul 0 moveto (RESULT = new EVar\(var, varxleft, varxright\);) show
+grestore
+gsave
+18 396 translate
+-90 rotate
+0 0 moveto 0 576 rlineto 378 0 rlineto 0 -576 rlineto closepath clip
+378 80 mp_a_x mul div 576 808 div scale
+newpath 0 792 moveto 80 mp_a_x mul 0 rlineto stroke
+headerfont setfont
+3 796 moveto (mar. 01 mars 2016 12:16:18 CET) show
+80 mp_a_x mul dup (Page 4) stringwidth pop sub 3 sub 796 moveto (Page 4) show
+fnamefont setfont
+(frontend/parser/parser.cup) stringwidth pop sub 2 div 796 moveto
+(frontend/parser/parser.cup) show
+4 7 translate 370 378 div 784 792 div scale
+textfont setfont
+8 mp_a_x mul 780 moveto (:}) show
+2 mp_a_x mul 768 moveto (| expr:l  PLUS  expr:r) show
+8 mp_a_x mul 756 moveto ({:) show
+11 mp_a_x mul 744 moveto (RESULT = new BinOp\("+", l, r, lxleft, rxright\);) show
+8 mp_a_x mul 732 moveto (:}) show
+2 mp_a_x mul 720 moveto (| expr:l  MINUS  expr:r) show
+8 mp_a_x mul 708 moveto ({:) show
+11 mp_a_x mul 696 moveto (RESULT = new BinOp\("-", l, r, lxleft, rxright\);) show
+8 mp_a_x mul 684 moveto (:}) show
+2 mp_a_x mul 672 moveto (| expr:l  TIMES  expr:r) show
+8 mp_a_x mul 660 moveto ({:) show
+11 mp_a_x mul 648 moveto (RESULT = new BinOp\("*", l, r, lxleft, rxright\);) show
+8 mp_a_x mul 636 moveto (:}) show
+2 mp_a_x mul 624 moveto (| expr:l  DIV  expr:r) show
+8 mp_a_x mul 612 moveto ({:) show
+11 mp_a_x mul 600 moveto (RESULT = new BinOp\("/", l, r, lxleft, rxright\);) show
+8 mp_a_x mul 588 moveto (:}) show
+2 mp_a_x mul 576 moveto (| expr:l  EQEQ  expr:r) show
+8 mp_a_x mul 564 moveto ({:) show
+11 mp_a_x mul 552 moveto (RESULT = new BinOp\("==", l, r, lxleft, rxright\);) show
+8 mp_a_x mul 540 moveto (:}) show
+2 mp_a_x mul 528 moveto (| LPAREN  expr:e  RPAREN) show
+8 mp_a_x mul 516 moveto ({:) show
+11 mp_a_x mul 504 moveto (RESULT = e;) show
+8 mp_a_x mul 492 moveto (:}) show
+0 480 moveto (;) show
+0 444 moveto (arguments ::=) show
+24 mp_a_x mul 444 moveto (/***** pas de vide \(\) ou de \(...;;;...\) *****/) show
+4 mp_a_x mul 432 moveto (expr:e) show
+8 mp_a_x mul 420 moveto ({:) show
+11 mp_a_x mul 408 moveto (LinkedList<Expr> tempList = new LinkedList<Expr>\(\);) show
+11 mp_a_x mul 396 moveto (tempList.add\(e\);) show
+11 mp_a_x mul 384 moveto (RESULT = tempList;) show
+8 mp_a_x mul 372 moveto (:}) show
+2 mp_a_x mul 360 moveto (| arguments:args  COMMA  expr:e) show
+8 mp_a_x mul 348 moveto ({:) show
+11 mp_a_x mul 336 moveto (\(\(LinkedList<Expr>\)args\).add\(e\);) show
+11 mp_a_x mul 324 moveto (RESULT = args;) show
+8 mp_a_x mul 312 moveto (:}) show
+0 300 moveto (;) show
+grestore
+restore
+showpage
+%%Trailer
+%%Pages: 4
