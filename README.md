@@ -11,4 +11,5 @@ Le compilateur pour un langage (type js) écrit dans l'UE 3I018 à l'UPMC (en 20
 
 ## Licence ##
 Ce projet est sous licence GPL v3.0. 
+
 Projet original : (C) 2009-2011 Equipe enseignante de la licence informatique de l'UPMC sous licence GPL v2.0
