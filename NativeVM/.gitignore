@@ -1,0 +1,6 @@
+# Builds
+*.o
+runvm
+
+# Tags (ctags)
+tags

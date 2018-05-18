@@ -1,0 +1,6 @@
+# Builds
+jcompiler.jar
+build/
+
+# Tags (ctags)
+tags
