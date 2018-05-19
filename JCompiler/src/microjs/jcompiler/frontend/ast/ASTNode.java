@@ -32,15 +32,14 @@ public abstract class ASTNode {
 		prettyPrint(buf);
 		return buf.toString();
 	}
-	
+
 	public DotGraph genDotGraph() {
 		DotGraph graph = new DotGraph();
 		buildDotGraph(graph);
 		return graph;
 	}
-	
-	protected abstract String buildDotGraph(DotGraph graph);
-	
-	
-}
 
+	protected abstract String buildDotGraph(DotGraph graph);
+
+
+}

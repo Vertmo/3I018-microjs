@@ -38,6 +38,12 @@
 /** opcode STORE */
 #define I_STORE 10
 
+/** opcode BFETCH */
+#define I_BFETCH 11
+
+/** opcode BSTORE */
+#define I_BSTORE 12
+
 /** Noms des opcodes */
 extern const char *opcode_names[];
 
@@ -58,8 +64,11 @@ extern const char *opcode_names[];
 /** type BOOL */
 #define T_BOOL 4
 
+/** type BLOCK */
+#define T_BLOCK 5
+
 /* type T_PAIR (réservé) */
-#define T_PAIR 5
+#define T_PAIR 6
 
 /** Noms des types */
 extern const char *type_names[];

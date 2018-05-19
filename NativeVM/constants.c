@@ -14,6 +14,8 @@ const char *opcode_names[] = {
   "FETCH",
   "JFALSE",
   "STORE",
+  "BFETCH",
+  "BSTORE",
   "<unknown>"
 };
 
@@ -24,6 +26,7 @@ const char *type_names[] = {
   "PRIM",
   "FUN",
   "BOOL",
+  "BLOCK",
   "pair",
   "<unknown>"
 };

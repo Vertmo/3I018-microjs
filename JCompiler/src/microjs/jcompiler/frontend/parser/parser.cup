@@ -10,7 +10,7 @@ import microjs.jcompiler.frontend.lexer.Lexer;
 import microjs.jcompiler.frontend.ast.*;
 
 terminal VAR, LET, EQ,
-     LPAREN, RPAREN, LCURLY, RCURLY, /* LBRACKET, RBRACKET, */
+     LPAREN, RPAREN, LCURLY, RCURLY, LBRACKET, RBRACKET,
 	 IF, ELSE, SWITCH, CASE, BREAK,
 	 FUNCTION, LAMBDA, RETURN,
      EQEQ, EQEQEQ, PLUS, MINUS, TIMES, DIV,
@@ -35,7 +35,7 @@ non terminal Statement	function;
 non terminal List<Statement> statements;
 non terminal List<Statement> block;
 non terminal List<String>    parameters;
-non terminal List<Expr>      arguments;
+non terminal List<Expr>      exprs;
 non terminal Map<Integer, List<Statement>> cases;
 
 precedence left	    EQEQ, EQEQEQ;
@@ -101,6 +101,10 @@ opened_statement ::=
 	{:
 	   RESULT = new Assign(id, e, idxleft, exright);
 	:}
+  | IDENTIFIER:tab LBRACKET expr:index RBRACKET EQ expr:e
+    {:
+      RESULT = new TabAssign(tab, index, e, tabxleft, exright);
+    :}
   | IDENTIFIER:id EQPLUS expr:e
     {:
        RESULT = new Assign(id, new BinOp("+", new EVar(id, idxleft, idxright), e, exleft, exright), idxleft, exright);
@@ -221,7 +225,7 @@ expr ::=
 	   RESULT = new Funcall(fun, new LinkedList<Expr>(),
                                 funxleft, rxright);
 	:}
-  | expr:fun  LPAREN  arguments:args  RPAREN
+  | expr:fun  LPAREN  exprs:args  RPAREN
 	{:
 	   RESULT = new Funcall(fun, args, funxleft, argsxright);
 	:}
@@ -261,17 +265,25 @@ expr ::=
 	{:
 	   RESULT = e;
 	:}
+  | LCURLY exprs:exp RCURLY:r
+    {:
+      RESULT = new TabConst(exp, expxleft, rxright);
+    :}
+  | IDENTIFIER:tab LBRACKET expr:index RBRACKET:r
+    {:
+      RESULT = new TabAccess(tab, index, tabxleft, rxright);
+    :}
 ;
 
 
-arguments ::=		/***** pas de vide () ou de (...;;;...) *****/
+exprs ::=		/***** pas de vide () ou de (...;;;...) *****/
     expr:e
 	{:
 	   LinkedList<Expr> tempList = new LinkedList<Expr>();
 	   tempList.add(e);
 	   RESULT = tempList;
 	:}
-  | arguments:args  COMMA  expr:e
+  | exprs:args  COMMA  expr:e
 	{:
 	   ((LinkedList<Expr>)args).add(e);
 	   RESULT = args;

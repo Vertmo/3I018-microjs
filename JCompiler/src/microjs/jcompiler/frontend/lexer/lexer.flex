@@ -85,6 +85,8 @@ break       { return symbol("BREAK", sym.BREAK); }
 \=		{ return symbol("EQ", sym.EQ); }
 \{		{ return symbol("LCURLY", sym.LCURLY); }
 \}		{ return symbol("RCURLY", sym.RCURLY); }
+\[    { return symbol("LBRACKET", sym.LBRACKET); }
+\]    { return symbol("RBRACKET", sym.RBRACKET); }
 \(		{ return symbol("LPAREN", sym.LPAREN); }
 \)		{ return symbol("RPAREN", sym.RPAREN); }
 \+		{ return symbol("PLUS", sym.PLUS); }

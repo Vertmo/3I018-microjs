@@ -84,4 +84,19 @@ public class KVariablesLibres implements KASTVisitor {
         stmt.getCond().accept(this);
         this.variables_libres = old;
     }
+
+    public void visit(KTab expr) {
+        for(KExpr e: expr.getContent()) {
+            e.accept(this);
+        }
+    }
+
+    public void visit(KTabAccess expr) {
+        expr.getIndex().accept(this);
+    }
+
+    public void visit(KTabAssign stmt) {
+        stmt.getIndex().accept(this);
+        stmt.getExpr().accept(this);
+    }
 }

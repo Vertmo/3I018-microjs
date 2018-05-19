@@ -2,31 +2,27 @@ package microjs.jcompiler.backend.bytecode;
 
 import microjs.jcompiler.backend.Serializer;
 
-public class Bool extends BCValue{
-    private boolean value;
+public class Block extends BCValue {
+    private int size;
 
-    public Bool(boolean value) {
-        this.value = value;
+    public Block(int size) {
+        this.size = size;
     }
 
     @Override
     public int getOpcode() {
-        return 4;
+        return 5;
     }
 
     @Override
     public String getOpcodeName() {
-        return "BOOL";
+        return "BLOCK";
     }
 
     @Override
     public void genBytecode(Serializer gen) {
         gen.encode(getOpcode());
-        if(value == true) {
-            gen.encode(1);
-        } else {
-            gen.encode(0);
-        }
+        gen.encode(size);
     }
 
     @Override
@@ -34,11 +30,9 @@ public class Bool extends BCValue{
         return 2;
     }
 
+    @Override
     public String toString() {
-        if(value) {
-            return "BOOL TRUE";
-        } else {
-            return "BOOL FALSE";
-        }
-    };
+        return "BLOCK " + size;
+    }
+
 }
