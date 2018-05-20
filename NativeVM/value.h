@@ -10,7 +10,7 @@
 
 /** \file value.h
  *  Représentation des valeurs.
- *  
+ *
  *  Une valeur est soit :
  *  - rien  (c'est le cas de la valeur "vide" utilisée comme type unit, également pour la liste vide).
  *  - un entier
@@ -18,12 +18,14 @@
  *  - une paire (car,cdr)
  *  - un numéro de primitive
  *  - une fermeture
+ *  - un block (tableau)
  */
 
 /* références en avant */
 struct _vm;
 struct _pair;
 struct _env;
+struct _varray;
 
 /** Structure pour les fermetures.
  */
@@ -33,10 +35,11 @@ typedef struct {
 } closure_t;
 
 /** Données associées à une valeur */
-union _value_data {                       
-  int             as_int;     /*!< si entier (T_INT), No de primitive (T_PRIM), ou booléen (T_BOOL) */
-  struct _pair    *as_pair;    /*!< si c'est une paire (T_PAIR) */
-  closure_t  as_closure; /*!< si c'est une fermeture (T_CLOSURE) */
+union _value_data {
+  int as_int;     /*!< si entier (T_INT), No de primitive (T_PRIM), ou booléen (T_BOOL) */
+  struct _pair *as_pair;    /*!< si c'est une paire (T_PAIR) */
+  struct _varray *as_block; /*!< si c'est un block (T_BLOCK) */
+  closure_t as_closure; /*!< si c'est une fermeture (T_CLOSURE) */
 };
 
 /** Représentation d'une valeur.
@@ -48,9 +51,9 @@ typedef struct {
 
 
 /** Représentation des paires car/cdr.
-Les allocations/désallocations de paires sont gérées par
-le garbage collector (GC).
- */
+    Les allocations/désallocations de paires sont gérées par
+    le garbage collector (GC).
+*/
 typedef struct _pair {
   value_t car;  /*!< premier élément de la paire. */
   value_t cdr;  /*!< second élément de la paire. */
@@ -58,7 +61,7 @@ typedef struct _pair {
 } pair_t;
 
 
-/* 
+/*
  * Initialiseurs
  */
 
@@ -70,6 +73,7 @@ void value_fill_bool(value_t *value, int flag);
 void value_fill_true(value_t *value);
 void value_fill_false(value_t *value);
 void value_fill_nil(value_t *value);
+void value_fill_block(value_t *value, struct _varray *block);
 
 /*
  * Reconnaisseurs
@@ -80,6 +84,7 @@ int value_is_prim(value_t *value);
 int value_is_closure(value_t *value);
 int value_is_int(value_t *value);
 int value_is_bool(value_t *value);
+int value_is_block(value_t *value);
 
 /*
  * Accesseurs
@@ -91,6 +96,7 @@ int value_is_true(value_t *value);
 int value_is_false(value_t *value);
 closure_t value_closure_get(value_t *value);
 pair_t * value_pair_get(value_t *value);
+struct _varray *value_block_get(value_t *value);
 
 /*
  * Manipulation des paires.

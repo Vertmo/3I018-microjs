@@ -2,5 +2,8 @@
 jcompiler.jar
 build/
 
+# Weird eclipse stuff
+**/workbench.xmi
+
 # Tags (ctags)
 tags

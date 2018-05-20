@@ -23,9 +23,9 @@ varray_t *varray_allocate(unsigned int initial_capacity) {
 
   assert(initial_capacity >= 0);
 
-  res->content  = (value_t *) malloc(sizeof(value_t) * initial_capacity);  
+  res->content  = (value_t *) malloc(sizeof(value_t) * initial_capacity);
   assert(res->content!=NULL);
-  res->capacity = initial_capacity;                                 
+  res->capacity = initial_capacity;
   res->top      = 0; // le marqueur top à 0 indique qu'il n'y a aucun élément (taille 0)
 
   return res;
@@ -43,22 +43,22 @@ varray_t *varray_allocate(unsigned int initial_capacity) {
 void varray_expandn(varray_t *varray, unsigned int n) {
 
   // déplacer le 'top'
-  varray->top += n;                                    
+  varray->top += n;
 
   // si le nouveau 'top' est au delà de la capacité
   // alors on augmente cette dernière
-  if(varray->top > varray->capacity) {             
+  if(varray->top > varray->capacity) {
     do {
       // de façon habituelle, pour ne pas réallouer
       // trop souvent, on multiplie par 2 la capacité.
-      varray->capacity *= 2;                           
-    } while(varray->capacity < varray->top);       
+      varray->capacity *= 2;
+    } while(varray->capacity < varray->top);
     // et on répète tant que la capacité n'est pas suffisante
     // pour englober le nouveau top
-    
+
     // la réallocation suit
-    varray->content 
-      = (value_t *) realloc(varray->content, 
+    varray->content
+      = (value_t *) realloc(varray->content,
                             sizeof(value_t) * varray->capacity);
     assert(varray->content!=NULL);
   }
@@ -78,7 +78,7 @@ void varray_popn(varray_t *varray, unsigned int n) {
   varray->top -= n;
 }
 
-/** Accéder à la n-ième valeur d'un tableau de valeurs. 
+/** Accéder à la n-ième valeur d'un tableau de valeurs.
  * Remarque : cette fonction effectue un accès de type tableau.
  * \param[in] varray le tableau de valeurs considéré.
  * \param n l'index de la valeur accédée (0 pour le premier élément).
@@ -102,7 +102,7 @@ void varray_set_at(varray_t *varray, unsigned int n, value_t *value) {
   *(varray_at(varray,n)) = *value;
 }
 
-/** Accéder à la n-ième valeur à partir du sommet de la pile. 
+/** Accéder à la n-ième valeur à partir du sommet de la pile.
  * \param[in] varray le tableau de valeurs considéré comme une pile.
  * \param n le déplacement entre le sommet (top) et la valeur accédée (0 pour top).
  * \return la valeur située à "distance" n du sommet de la pile.
@@ -113,7 +113,7 @@ value_t *varray_top_at(varray_t *varray, unsigned int n) {
   return &varray->content[varray->top - n - 1];
 }
 
-/** Accédera sommet de la pile. 
+/** Accédera sommet de la pile.
  * \param[in] varray le tableau de valeurs considéré comme une pile.
  * \return le sommet de la pile.
  */
@@ -179,7 +179,7 @@ void varray_destroy(varray_t *varray) {
   free(varray);
 }
 
-/** Affichage d'un tableau de valeurs sur la sortie standard (pour débogage). 
+/** Affichage d'un tableau de valeurs sur la sortie standard (pour débogage).
  * \param[in] varray le tableau à afficher.
  */
 void varray_print(varray_t *varray) {

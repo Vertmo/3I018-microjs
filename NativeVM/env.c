@@ -21,7 +21,7 @@ value_t *env_search(env_t *env, unsigned int pos) {
     pos -= env->content->top;
     env = env->next;
   }
-  printf("env_search: index outside environment (please report)");
+  printf("env_search: index outside environment (please report)\n");
   abort();
   return 0;
 }

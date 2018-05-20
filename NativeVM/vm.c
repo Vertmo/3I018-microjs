@@ -35,15 +35,16 @@ vm_t * init_vm(program_t *program, int debug_vm, int debug_gc, int collection_fr
   // initialize stack
   vm->stack = varray_allocate(STACK_SIZE);
 
+  // initialize GC
+  vm->gc = init_gc(debug_gc, collection_frequency);
+
   // initial frame
   vm->frame = frame_push(NULL, // pas de call frame parente
-                         NULL, // environnement local vide
+                         gc_alloc_env(vm->gc, 1, NULL), //Un peu de place pour les tableaux...
                          0,  // début de pile ... au début
                          0); // commencer par la première instruction
 
 
-  // initialize GC
-  vm->gc = init_gc(debug_gc, collection_frequency);
 
   return vm;
 }
@@ -115,11 +116,11 @@ void vm_execute_instr(vm_t *vm, int instr) {
       value_fill_unit(&value);
       break;
     case T_FUN: { // placer une fermeture
-	closure_t closure;
-        closure.env = vm->frame->env; // on capture l'environnement courant
-        closure.pc = vm_next(vm); // le PC de la fermeture est la prochaine information
-        value_fill_closure(&value, closure);
-      }
+      closure_t closure;
+      closure.env = vm->frame->env; // on capture l'environnement courant
+      closure.pc = vm_next(vm); // le PC de la fermeture est la prochaine information
+      value_fill_closure(&value, closure);
+    }
       break;
     case T_PRIM: // placer un numéro de primitive
       value_fill_prim(&value, vm_next(vm));
@@ -128,13 +129,23 @@ void vm_execute_instr(vm_t *vm, int instr) {
       value_fill_bool(&value, vm_next(vm));
       break;
     case T_PAIR: // placer une paire (on ne devrait pas avoir ce cas)
-        printf("No immediate pair ! (please report)");
-	exit(EXIT_FAILURE);
-        break;
-      default:
-	printf("Unknow type: %d (in push)\n", vm->program->bytecode[vm->frame->pc-1]);
-	exit(EXIT_FAILURE);
+      printf("No immediate pair ! (please report)");
+      exit(EXIT_FAILURE);
+      break;
+    case T_BLOCK: {
+      int size = vm_next(vm);
+      value_fill_block(&value, varray_allocate(size));
+      for(int i=0; i<size; i++) {
+        value_t unit;
+        value_fill_unit(&unit);
+        varray_push(value_block_get(&value), &unit);
       }
+      break;
+    }
+    default:
+      printf("Unknow type: %d (in push)\n", vm->program->bytecode[vm->frame->pc-1]);
+      exit(EXIT_FAILURE);
+    }
 
     // empiler la valeur
     varray_push(vm->stack,&value);
@@ -162,26 +173,26 @@ void vm_execute_instr(vm_t *vm, int instr) {
     int nb_args = vm_next(vm);
 
     switch(fun->type) {
-        // si c'est une fermeture
-      case T_FUN: {
-	int i;
-        closure_t closure = value_closure_get(fun);
-	env_t *env = gc_alloc_env(vm->gc, nb_args, closure.env);
+      // si c'est une fermeture
+    case T_FUN: {
+      int i;
+      closure_t closure = value_closure_get(fun);
+      env_t *env = gc_alloc_env(vm->gc, nb_args+1, closure.env);
 
-        // recopier les arguments de la pile vers l'environnement local
-        // de la fermeture
-	for (i=0; i<nb_args; i++) {
-	  varray_set_at(env->content, i,varray_top_at(vm->stack, i));
-        }
-	varray_popn(vm->stack, nb_args); // tout dépiler
-
-        // empiler une nouvelle call frame.
-	vm->frame = frame_push(vm->frame, env, vm->stack->top, vm->frame->pc);
-	vm->frame->pc = closure.pc;
-	break;
+      // recopier les arguments de la pile vers l'environnement local
+      // de la fermeture
+      for (i=0; i<nb_args; i++) {
+        varray_set_at(env->content, i,varray_top_at(vm->stack, i));
       }
+      varray_popn(vm->stack, nb_args); // tout dépiler
 
-        // Exécuter une primitive
+      // empiler une nouvelle call frame.
+      vm->frame = frame_push(vm->frame, env, vm->stack->top, vm->frame->pc);
+      vm->frame->pc = closure.pc;
+      break;
+    }
+
+      // Exécuter une primitive
     case T_PRIM: {
       // numéro de primitive encodée dans la valeur.
       int prim_num = value_prim_get(fun);
@@ -225,18 +236,40 @@ void vm_execute_instr(vm_t *vm, int instr) {
     }
     break;
 
+    // accéder à l'un des elements du tableau
+  case I_BFETCH: {
+    int index = value_int_get(varray_top_at(vm->stack, 0));
+    varray_t *block = value_block_get(varray_top_at(vm->stack, 1));
+    varray_popn(vm->stack, 2);
+    varray_push(vm->stack, varray_at(block, index));
+    break;
+  }
 
-/********** Correction TD-TME9 **********/
+    // changer un élément dans un tableau
+  case I_BSTORE: {
+    value_t *val = varray_top_at(vm->stack, 0);
+    int index = value_int_get(varray_top_at(vm->stack, 1));
+    varray_t *block = value_block_get(varray_top_at(vm->stack, 2));
+    varray_set_at(block, index, val);
+    varray_popn(vm->stack, 3);
+    value_t unit;
+    value_fill_unit(&unit);
+    //varray_push(vm->stack, &unit);
+    break;
+  }
+
+
+    /********** Correction TD-TME9 **********/
 
     /*case I_JTRUE:
-    if(value_is_true(varray_pop(vm->stack))) {
+      if(value_is_true(varray_pop(vm->stack))) {
       vm->frame->pc = vm->program->bytecode[vm->frame->pc];
-    } else {
+      } else {
       vm_next(vm);
-    }
-    break;*/
+      }
+      break;*/
 
-/********** Fin - Correction TD-TME9 **********/
+    /********** Fin - Correction TD-TME9 **********/
 
 
   default:

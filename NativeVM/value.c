@@ -10,6 +10,7 @@
 #include <stdlib.h>
 
 #include "constants.h"
+#include "varray.h"
 #include "value.h"
 
 /** Préparation d'une valeur Unit.
@@ -76,6 +77,15 @@ void value_fill_nil(value_t *value) {
   value->data.as_pair  = NULL;
 }
 
+/** Préparation d'une valeur de type block
+ * \param[in, out] value la valeur à préparer
+ * \param[in] block le block à associer à la valeur
+ */
+void value_fill_block(value_t *value, varray_t *block) {
+  value->type = T_BLOCK;
+  value->data.as_block = block;
+}
+
 /** Tester si la valeur est de type paire. */
 int value_is_pair(value_t *value)    { return value->type == T_PAIR; }
 
@@ -90,6 +100,9 @@ int value_is_int(value_t *value)     { return value->type == T_INT; }
 
 /** Tester si la valeur est de type booléen. */
 int value_is_bool(value_t *value)    { return value->type == T_BOOL; }
+
+/** Tester si la valeur est de type block. */
+int value_is_block(value_t *value)   { return value->type == T_BLOCK; }
 
 /** Tester si la valeur est la paire vide */
 int value_is_nil(value_t *value)  {
@@ -131,6 +144,12 @@ closure_t value_closure_get(value_t *value) {
 pair_t * value_pair_get(value_t *value) {
   assert(value->type == T_PAIR);
   return value->data.as_pair;
+}
+
+/** Récupère le block */
+varray_t *value_block_get(value_t *value) {
+  assert(value->type == T_BLOCK);
+  return value->data.as_block;
 }
 
 
@@ -234,6 +253,8 @@ static void value_print_intern(value_t *value, int in_cdr) {
       break;
     case T_PAIR: // déjà traité
       break;
+    case T_BLOCK:
+      varray_print(value->data.as_block);
     }
   }
 }

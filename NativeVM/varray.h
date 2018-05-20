@@ -19,7 +19,7 @@
 
 /** Structure générique pour tout tableau de cellules.
  */
-typedef struct {
+typedef struct _varray {
   value_t* content; /*!< le contenu (tableau dynamique de cellules) */
   unsigned int capacity; /*!< capacité du tableau (taille allouée) */
   unsigned int top; /*!< dernier élément utilisé (ou sommet de pile).
