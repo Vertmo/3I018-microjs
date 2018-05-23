@@ -41,6 +41,7 @@ non terminal Map<Integer, List<Statement>> cases;
 precedence left	    EQEQ, EQEQEQ;
 precedence left	    PLUS, MINUS;
 precedence left	    TIMES, DIV;
+precedence left     LBRACKET, RBRACKET;
 
 
 program ::=
@@ -101,10 +102,6 @@ opened_statement ::=
 	{:
 	   RESULT = new Assign(id, e, idxleft, exright);
 	:}
-  | IDENTIFIER:tab LBRACKET expr:index RBRACKET EQ expr:e
-    {:
-      RESULT = new TabAssign(tab, index, e, tabxleft, exright);
-    :}
   | IDENTIFIER:id EQPLUS expr:e
     {:
        RESULT = new Assign(id, new BinOp("+", new EVar(id, idxleft, idxright), e, exleft, exright), idxleft, exright);
@@ -269,9 +266,13 @@ expr ::=
     {:
       RESULT = new TabConst(exp, expxleft, rxright);
     :}
-  | IDENTIFIER:tab LBRACKET expr:index RBRACKET:r
+  | expr:tab LBRACKET expr:index RBRACKET:r
     {:
       RESULT = new TabAccess(tab, index, tabxleft, rxright);
+    :}
+  | expr:tab LBRACKET expr:index RBRACKET EQ expr:e
+    {:
+      RESULT = new TabAssign(tab, index, e, tabxleft, exright);
     :}
 ;
 

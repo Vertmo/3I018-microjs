@@ -5,10 +5,10 @@ import microjs.jcompiler.utils.DotGraph;
 import microjs.jcompiler.middleend.kast.KTabAccess;
 
 public class TabAccess extends Expr {
-    private String tab;
+    private Expr tab;
     private Expr index;
 
-    public TabAccess(String tab, Expr index, Location startPos, Location endPos) {
+    public TabAccess(Expr tab, Expr index, Location startPos, Location endPos) {
         super(startPos, endPos);
         this.tab = tab;
         this.index = index;
@@ -16,7 +16,7 @@ public class TabAccess extends Expr {
 
     @Override
     public KTabAccess expand() {
-        return new KTabAccess(tab, index.expand(), getStartPos(), getEndPos());
+        return new KTabAccess(tab.expand(), index.expand(), getStartPos(), getEndPos());
     }
 
     @Override
@@ -27,7 +27,7 @@ public class TabAccess extends Expr {
 
 	@Override
 	protected void prettyPrint(StringBuilder buf) {
-      buf.append(tab);
+      tab.prettyPrint(buf);
       buf.append("[");
       index.prettyPrint(buf);
       buf.append("]");

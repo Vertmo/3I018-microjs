@@ -40,7 +40,7 @@ vm_t * init_vm(program_t *program, int debug_vm, int debug_gc, int collection_fr
 
   // initial frame
   vm->frame = frame_push(NULL, // pas de call frame parente
-                         gc_alloc_env(vm->gc, 1, NULL), //Un peu de place pour les tableaux...
+                         NULL, // env lexical null
                          0,  // début de pile ... au début
                          0); // commencer par la première instruction
 
@@ -177,7 +177,7 @@ void vm_execute_instr(vm_t *vm, int instr) {
     case T_FUN: {
       int i;
       closure_t closure = value_closure_get(fun);
-      env_t *env = gc_alloc_env(vm->gc, nb_args+1, closure.env);
+      env_t *env = gc_alloc_env(vm->gc, nb_args, closure.env);
 
       // recopier les arguments de la pile vers l'environnement local
       // de la fermeture
@@ -251,10 +251,7 @@ void vm_execute_instr(vm_t *vm, int instr) {
     int index = value_int_get(varray_top_at(vm->stack, 1));
     varray_t *block = value_block_get(varray_top_at(vm->stack, 2));
     varray_set_at(block, index, val);
-    varray_popn(vm->stack, 3);
-    value_t unit;
-    value_fill_unit(&unit);
-    //varray_push(vm->stack, &unit);
+    varray_popn(vm->stack, 2);
     break;
   }
 

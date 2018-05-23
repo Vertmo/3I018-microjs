@@ -4,12 +4,12 @@ import java_cup.runtime.ComplexSymbolFactory.Location;
 import microjs.jcompiler.utils.DotGraph;
 import microjs.jcompiler.middleend.kast.KTabAssign;
 
-public class TabAssign extends Statement {
-    private String tab;
+public class TabAssign extends Expr {
+    private Expr tab;
     private Expr index;
     private Expr e;
 
-    public TabAssign(String tab, Expr index, Expr e, Location startPos, Location endPos) {
+    public TabAssign(Expr tab, Expr index, Expr e, Location startPos, Location endPos) {
         super(startPos, endPos);
         this.tab = tab;
         this.index = index;
@@ -18,7 +18,7 @@ public class TabAssign extends Statement {
 
     @Override
     public KTabAssign expand() {
-        return new KTabAssign(tab, index.expand(), e.expand(), getStartPos(), getEndPos());
+        return new KTabAssign(tab.expand(), index.expand(), e.expand(), getStartPos(), getEndPos());
     }
 
     @Override
@@ -28,8 +28,8 @@ public class TabAssign extends Statement {
     }
 
     @Override
-    protected void prettyPrint(StringBuilder buf, int indent_level) {
-        buf.append(tab);
+    protected void prettyPrint(StringBuilder buf) {
+        tab.prettyPrint(buf);
         buf.append("[");
         index.prettyPrint(buf);
         buf.append("] = ");

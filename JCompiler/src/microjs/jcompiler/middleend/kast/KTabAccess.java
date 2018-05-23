@@ -3,10 +3,10 @@ package microjs.jcompiler.middleend.kast;
 import java_cup.runtime.ComplexSymbolFactory.Location;
 
 public class KTabAccess extends KExpr {
-    private String tab;
+    private KExpr tab;
     private KExpr index;
 
-    public KTabAccess(String tab, KExpr index, Location startPos, Location endPos) {
+    public KTabAccess(KExpr tab, KExpr index, Location startPos, Location endPos) {
         super(startPos, endPos);
         this.tab = tab;
         this.index = index;
@@ -17,7 +17,7 @@ public class KTabAccess extends KExpr {
         visitor.visit(this);
     }
 
-    public String getName() {
+    public KExpr getTab() {
         return tab;
     }
 

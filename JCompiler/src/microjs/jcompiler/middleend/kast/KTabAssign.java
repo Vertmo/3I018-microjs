@@ -2,12 +2,12 @@ package microjs.jcompiler.middleend.kast;
 
 import java_cup.runtime.ComplexSymbolFactory.Location;
 
-public class KTabAssign extends KStatement {
-    private String tab;
+public class KTabAssign extends KExpr {
+    private KExpr tab;
     private KExpr index;
     private KExpr e;
 
-    public KTabAssign(String tab, KExpr index, KExpr e, Location startPos, Location endPos) {
+    public KTabAssign(KExpr tab, KExpr index, KExpr e, Location startPos, Location endPos) {
         super(startPos, endPos);
         this.tab = tab;
         this.index = index;
@@ -19,7 +19,7 @@ public class KTabAssign extends KStatement {
         visitor.visit(this);
     }
 
-    public String getName() {
+    public KExpr getTab() {
         return tab;
     }
 

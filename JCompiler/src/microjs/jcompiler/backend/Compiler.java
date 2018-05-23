@@ -264,65 +264,23 @@ public class Compiler implements KASTVisitor {
     @Override
     public void visit(KTab expr) {
         bytecode.push(new Block(expr.getContent().size()));
-        String ref = "_tmp_tab_";
-        ArrayList<String> refs = new ArrayList<>();
-        refs.add(ref);
-        lexEnv.extend(refs);
-        try {
-            bytecode.store(lexEnv.fetch(ref));
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
         for(int i=0; i<expr.getContent().size(); i++) {
-            try {
-                bytecode.fetch(lexEnv.fetch(ref));
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
             bytecode.push(new Int(i));
             expr.getContent().get(i).accept(this);
             bytecode.bstore();
         }
-        try {
-            bytecode.fetch(lexEnv.fetch(ref));
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        lexEnv.drop(1);
     }
 
     @Override
     public void visit(KTabAccess expr) {
-        int ref = -1;
-        try {
-            ref = lexEnv.fetch(expr.getName());
-            bytecode.fetch(ref);
-        } catch(LexicalEnv.VarNotFound err) {
-            try {
-                ref = globEnv.fetch(expr.getName());
-                bytecode.gfetch(ref);
-            } catch(GlobalEnv.VarNotFound e) {
-                throw new CompileError(expr, "Not in scope: " + expr.getName());
-            }
-        }
+        expr.getTab().accept(this);
         expr.getIndex().accept(this);
         bytecode.bfetch();
     }
 
     @Override
     public void visit(KTabAssign stmt) {
-        int ref = -1;
-        try {
-            ref = lexEnv.fetch(stmt.getName());
-            bytecode.fetch(ref);
-        } catch(LexicalEnv.VarNotFound err) {
-            try {
-                ref = globEnv.fetch(stmt.getName());
-                bytecode.gfetch(ref);
-            } catch(GlobalEnv.VarNotFound e) {
-                throw new CompileError(stmt, "Not in scope: " + stmt.getName());
-            }
-        }
+        stmt.getTab().accept(this);
         stmt.getIndex().accept(this);
         stmt.getExpr().accept(this);
         bytecode.bstore();

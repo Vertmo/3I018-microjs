@@ -244,7 +244,8 @@ public class KPrettyPrint implements KASTVisitor {
         buf.append("KTabAccess[\n");
         indent_level++;
         indent();
-        buf.append(expr.getName() + "\n");
+        expr.getTab().accept(this);
+        buf.append("\n");
         expr.getIndex().accept(this);
         buf.append("]");
         indent_level--;
@@ -256,7 +257,8 @@ public class KPrettyPrint implements KASTVisitor {
         buf.append("KTabAssign[\n");
         indent_level++;
         indent();
-        buf.append(expr.getName() + "\n");
+        expr.getTab().accept(this);
+        buf.append("\n");
         expr.getIndex().accept(this);
         buf.append("\n");
         expr.getExpr().accept(this);
